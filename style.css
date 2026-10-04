@@ -141,3 +141,9 @@ dl.kv{margin:0}dl.kv dt{color:var(--ac);font-weight:700;margin-top:.9em}dl.kv dd
     color:var(--ac);font-size:12px;letter-spacing:.2em;white-space:nowrap;
     pointer-events:none;z-index:300;
 }
+
+/* 修复导航被hero遮挡，只新增这几行 */
+.navbar {
+    position: relative;
+    z-index: 999;
+}
