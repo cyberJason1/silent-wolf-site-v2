@@ -147,3 +147,59 @@ dl.kv{margin:0}dl.kv dt{color:var(--ac);font-weight:700;margin-top:.9em}dl.kv dd
     position: relative;
     z-index: 999;
 }
+
+/* 沉默之狼 - 院线级暗蓝呼吸光影标题（专属悬疑风） */
+.hero-text h1 {
+    font-size: 48px;
+    letter-spacing: 8px;
+    color: #f2ede4;
+    font-weight: 700;
+    /* 双层光影：深邃暗蓝+微光层次 */
+    text-shadow: 0 0 6px rgba(180, 210, 255, 0.15),
+    0 0 15px rgba(140, 180, 240, 0.12),
+    0 2px 12px rgba(0, 0, 0, 0.7);
+    /* 柔和呼吸动态效果 */
+    animation: wolf-breath 4s ease-in-out infinite alternate;
+}
+
+/* 沉默之狼 - 暗蓝呼吸光影标题【微调柔和版】 */
+.hero-text h1 {
+    font-size: 48px;
+    letter-spacing: 8px;
+    color: #f2ede4;
+    font-weight: 700;
+    text-shadow: 0 0 6px rgba(180, 210, 255, 0.12),
+    0 0 15px rgba(140, 180, 240, 0.10),
+    0 2px 12px rgba(0, 0, 0, 0.7);
+    /* 6秒一次完整呼吸，更缓慢安静，悬疑氛围感更强 */
+    animation: wolf-breath 6s ease-in-out infinite alternate;
+}
+
+@keyframes wolf-breath {
+    0% {
+        text-shadow: 0 0 6px rgba(180, 210, 255, 0.12),
+        0 0 15px rgba(140, 180, 240, 0.10),
+        0 2px 12px rgba(0, 0, 0, 0.7);
+    }
+    100% {
+        text-shadow: 0 0 9px rgba(180, 210, 255, 0.20),
+        0 0 20px rgba(140, 180, 240, 0.15),
+        0 2px 12px rgba(0, 0, 0, 0.7);
+    }
+}
+
+/* 副标题样式 */
+.hero-sub {
+    margin-top: 12px;
+    letter-spacing: 1.2px;
+    line-height: 2.1;
+    color: #d9d2c6;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+    opacity: 0.95;
+}
+
+/* 按钮防遮挡 */
+.btn {
+    position: relative;
+    z-index: 999;
+}
