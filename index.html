@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>沉默之狼 | Silent Wolf</title>
     <meta name="theme-color" content="#121a22">
-    <!-- 浏览器标签小图标 favicon 【已修正路径 assets/images/favicon.png】 -->
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
-    <!-- ===== Discord分享预览卡片 OG标签【已修复，使用完整绝对链接】 ===== -->
     <meta property="og:site_name" content="沉默之狼 Silent Wolf">
     <meta property="og:locale" content="zh_CN">
     <meta property="og:type" content="website">
@@ -64,7 +62,6 @@
         .facts span{color:var(--mu);font-size:.9rem}
         .vid{aspect-ratio:16/9;max-width:1100px;background:#000;border:1px solid #ffffff22}
         .vid video{width:100%;height:100%;display:block}
-        /* 人物 3D 环 */
         .stage{padding:14vh 0 10vh;text-align:center;position:relative;overflow:hidden}
         .stage h2.t{margin-bottom:.4em}
         .tip{color:var(--mu);font-size:.95rem;letter-spacing:.1em}
@@ -91,7 +88,6 @@
         .c3.hv .bub{opacity:1;transform:translate(-50%,0)}
         .arr{position:absolute;top:50%;margin-top:-24px;width:48px;height:48px;border-radius:50%;border:1px solid #ffffff44;background:#121a22aa;color:var(--tx);font-size:1.4rem;cursor:pointer;z-index:999}
         .arr.l{left:4vw}.arr.r{right:4vw}
-        /* 画框 */
         .fig{position:relative;aspect-ratio:3/4;width:100%;max-width:430px;max-height:78vh;justify-self:center;margin:0 auto}
         .ph{position:absolute;inset:0;overflow:hidden;display:block;background:linear-gradient(160deg,color-mix(in srgb,var(--c) 30%,#121a22),#121a22 80%)}
         .ph img{width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block}
@@ -103,7 +99,6 @@
         .fig[data-s=line]{outline:1px solid var(--c);outline-offset:10px}
         .fig[data-s=quiet]{border-right:3px solid var(--c)}
         .fig[data-s=quiet] .ph{filter:saturate(.35)}
-        /* 金句卡 */
         .card{position:relative;max-width:25em;margin-top:2.2rem;padding:1.4rem 1.7rem;font-size:1.2rem;line-height:1.85;letter-spacing:.06em;transition:transform .8s,box-shadow .8s}
         .card cite{display:block;margin-top:.8em;font-size:.85rem;font-style:normal;text-align:right;letter-spacing:.1em;opacity:.8}
         .note{background:#f1ebe0;color:#3a3228;transform:rotate(1.2deg);box-shadow:0 12px 30px #0007;font-style:italic}
@@ -114,7 +109,6 @@
         .c-ariff{padding-top:2.5rem;margin-left:7px;background:#19221a;border:1px solid var(--c);outline:1px solid color-mix(in srgb,var(--c) 45%,transparent);outline-offset:6px}
         .c-ariff::before{content:"「";position:absolute;top:.3rem;left:.6rem;font-size:2.2rem;line-height:1;color:var(--c)}
         .c-ye{padding:1.8rem .4rem;font-size:1.45rem;font-weight:300;color:#e6e1f0;border-top:1px solid var(--c);border-bottom:1px solid var(--c);box-shadow:0 30px 60px -40px var(--c)}
-        /* 欢迎 + 角色简介 */
         #wel{position:fixed;inset:0;z-index:110;display:grid;place-items:center;padding:6vw;text-align:center;cursor:pointer;background:radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--c) 25%,#0b1117),#0b1117 75%);opacity:0;visibility:hidden;transition:opacity .6s,visibility .6s}
         #wel.on{opacity:1;visibility:visible}
         #wt{font-size:clamp(1.5rem,4vw,2.6rem);letter-spacing:.14em;line-height:1.8;min-height:2em}
@@ -149,7 +143,6 @@
         #hold{display:none;position:fixed;left:50%;bottom:6vh;width:84px;height:84px;margin-left:-42px;border-radius:50%;border:1px solid var(--c);background:transparent;color:var(--tx);cursor:pointer;z-index:4;transition:.6s;font-size:.85rem;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
         #prof[data-t=ye] #hold{display:block}
         #prof.hl #hold{background:color-mix(in srgb,var(--c) 40%,transparent);transform:scale(1.35);box-shadow:0 0 60px var(--c)}
-        /* 金句与档案 */
         .q{font-size:clamp(1.8rem,5.2vw,3.8rem);line-height:1.5;letter-spacing:.1em;font-weight:700;margin-bottom:.9em}
         .q:nth-of-type(2){margin-left:12vw}
         .arch{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:4rem;max-width:62em;margin-top:6rem}
@@ -164,7 +157,6 @@
 <body data-t="base">
 <div class="wash"></div><div id="bar"></div>
 <header>
-    <!-- ========== LOGO 图片 ========== -->
     <a class="brand" href="#top"><img src="assets/images/logo.png" alt="" onerror="this.remove()">沉默之狼</a>
     <nav><a href="#story" data-n="story">故事</a><a href="#trailer" data-n="trailer">预告</a><a href="#cast" data-n="cast">人物</a><a href="#stills" data-n="stills">剧照</a><a href="#archive" data-n="archive">档案</a></nav>
 </header>
@@ -180,12 +172,12 @@
     <section class="sec story" id="story" data-t="base" data-n="story">
         <div class="w">
             <h2 class="t">故事</h2>
-            <p>吉隆坡一所华文独立中学。十七岁的中场陈知白拥有「结构视角」，能在球场上推演接下来十三秒里的多种走向——那不是预知未来。这份天赋有代价，其中一部分，由他的哥哥陈知夜清醒地、自愿地承担。</p>
-            <p style="margin-top:1.4em">队友叫他「影子」，误解他，忽视他。看台上，转学生苏念握着父亲留下的胶片相机，默默注视，递出一张匿名纸条。教练 Ariff 曾拥有同样的天赋，也曾被神秘组织监视，如今暗中守护这个少年。谎言、记忆的碎片、远处的注视，交织成一场少年的成长。</p>
+            <p>吉隆坡一所华文独立中学。十七岁的中场陈知白拥有「结构视角」，依靠超强赛场观察与空间记忆，可以推演球场上<strong>1‑3秒多种概率走向</strong>——这并不是预知固定未来。这份天赋附带沉重代价，代价C由亲哥哥陈知夜清醒、自愿地主动选择承担。</p>
+            <p style="margin-top:1.4em">队友前期叫他「影子（Bayang）」，误解、忽视他；后期认可，改称「天狼」。看台上，转学生苏念握着父亲遗留的老式胶片相机，默默注视着球场，写下匿名关心纸条。主教练 Ariff Aimran年轻时拥有相同天赋，曾经被神秘组织监视，退役回到独中，在暗处观察、保护陈知白。记忆碎片、远处无声的监视、隐忍的羁绊，编织属于少年的成长故事。第一卷中神秘组织只做远距离监视记录，无暴力、绑架、正面对峙冲突。</p>
         </div>
         <div class="facts">
-            <div><b>17 岁</b><span>校队 8 号中场，陈知白</span></div>
-            <div><b>13 秒</b><span>他能推演的球场走向</span></div>
+            <div><b>17 岁</b><span>校队 8 号中场｜陈知白</span></div>
+            <div><b>1‑3 秒</b><span>结构视角推演多种球场概率走向</span></div>
             <div><b>第一卷</b><span>限定系列真人短片，开放结局，本卷无暴力冲突</span></div>
         </div>
     </section>
@@ -193,7 +185,6 @@
     <section class="sec" id="trailer" data-t="base" data-n="trailer">
         <h2 class="t">先导预告</h2>
         <div class="vid">
-            <!-- ========== 视频封面 poster + 视频文件（assets/videos） ========== -->
             <video controls playsinline preload="metadata" poster="assets/images/poster.png"><source src="assets/videos/trailer.mp4" type="video/mp4">您的浏览器不支持视频播放，请下载预告观看。</video>
         </div>
     </section>
@@ -209,7 +200,6 @@
 
     <section class="sec" id="stills" data-t="base" data-n="stills">
         <h2 class="t">剧照</h2>
-        <!-- ========== 剧照 1~4 ========== -->
         <div class="sg" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem">
             <figure class="st" data-p="剧照 1｜放入 assets/images/stills/1.jpg"><img src="assets/images/stills/1.jpg" alt="剧照 1" onerror="this.parentNode.classList.add('e');this.remove()"></figure>
             <figure class="st" data-p="剧照 2｜放入 assets/images/stills/2.jpg"><img src="assets/images/stills/2.jpg" alt="剧照 2" onerror="this.parentNode.classList.add('e');this.remove()"></figure>
@@ -220,12 +210,22 @@
 
     <section class="sec" id="archive" data-t="base" data-n="archive">
         <h2 class="t">项目档案</h2>
+        <blockquote class="q">眼睛会骗人。结构不会。</blockquote>
         <blockquote class="q">你踢你的。我看得见。</blockquote>
         <blockquote class="q">你往亮的地方踢。</blockquote>
         <div class="arch">
-            <div><h3>世界观</h3><p>故事发生在现代马来西亚吉隆坡的华文独中。能力是超强的观察与概率推演，不是宿命预知。神秘组织只在远处监视；第一卷为开放结局，不出现暴力绑架冲突。</p></div>
-            <div><h3>项目信息</h3><p>限定系列真人短片（非连续剧，非网剧）。画幅 16:9 宽银幕。类型：校园足球、写实体育悬疑、少年成长、朦胧情愫。</p></div>
-            <div><h3>素材</h3><p><a href="download.html">前往官方素材下载与使用规范</a></p></div>
+            <div>
+                <h3>世界观</h3>
+                <p>故事发生在现代马来西亚吉隆坡华文独立中学。结构视角本质是超强赛场观察、空间记忆、归纳球员习惯，推演1‑3秒多种比赛概率走向，并非预知固定未来。神秘组织第一卷仅远距离监视搜集信息，禁止暴力、绑架、直接对峙冲突；第一卷为开放结局，组织完整真相留待后续篇章。</p>
+            </div>
+            <div>
+                <h3>项目信息</h3>
+                <p>限定系列真人短片。国际版标题：<strong>The Silent Wolf</strong>。画幅16:9宽银幕。类型：马来西亚华文独中校园足球 / 写实体育悬疑 / 少年成长 / 朦胧情愫 / 兄弟情。</p>
+            </div>
+            <div>
+                <h3>素材</h3>
+                <p><a href="download.html">前往官方素材下载与使用规范</a></p>
+            </div>
         </div>
     </section>
 </main>
@@ -248,17 +248,67 @@
     (()=>{
         const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
         const D=[
-            /* ========== 4 角色头像图片 img ========== */
-            {k:'bai',n:'陈知白',g:'白',img:'assets/images/cast/chenzhibai.png',s:'grid',cc:'c-bai',r:'十七岁，校队 8 号中场。起初是影子，后来是天狼',p:'寡言内敛，口头禅是「嗯」。他看得见十三秒里的每一种可能，却会忘掉生活里的琐事。黑色短发微遮右眼。',q:'我看见的不是未来，只是尚未发生的可能。',w:'嗯。你来了。请随便看。',hl:['嗯。','十三秒。够了。','你站的位置，不错。'],t:'移动鼠标：十三秒里所有的走向，其中一条会被看见。'},
-            {k:'nian',n:'苏念',g:'念',img:'assets/images/cast/sunian.png',s:'film',cc:'note',r:'十六岁转学生，校刊摄影。场外观众',p:'脖子上挂着父亲留下的老式胶片相机。细腻、温柔，笨拙地理解足球。她是那个写匿名纸条的人。',q:'又没好好吃饭？球踢得那么好，饭也要好好吃。<cite>——你的场外观众</cite>',w:'你好呀，我是苏念。别动，先让我看看你。',hl:['嗨，别动，我给你拍一张。','今天有好好吃饭吗？','我一直在看台那边。'],t:'移动鼠标：像透过取景框看人。点击一下，按下快门。'},
-            {k:'ariff',n:'Ariff Aimran',g:'A',img:'assets/images/cast/ariff.png',s:'line',cc:'c-ariff',r:'四十六岁马来裔教练，校队主教练',p:'年轻时拥有同样的天赋，也曾被神秘组织监视。退役后回到中学，不多说话，只是看着，护着。',q:'你只管看。其余的，交给我。',w:'欢迎。坐吧，这里有我。',hl:['来了？','慢慢来，我在这儿。','看比赛，也看人。'],t:'点击任意位置，落下一个守护的圈。'},
-            {k:'ye',n:'陈知夜',g:'夜',img:'assets/images/cast/chenzhiye.png',s:'quiet',cc:'c-ye',r:'陈知白的哥哥，二十岁。背负代价的人，第七章正式登场',p:'清醒、自愿地承担天赋的代价。他有自己的人格，不是谁的悲情工具。旧纯色衬衫，深色休闲外套，不穿球衣，也不穿球鞋。',q:'这不是牺牲。是我选的。',w:'你好，我是陈知夜。慢慢看，不用着急。',hl:['不用替我难过。','你好。别担心，我很清醒。','我没事。真的。'],t:'按住下方的圆，听他把话说完。'}];
+            {
+                k:'bai',
+                n:'陈知白',
+                g:'白',
+                img:'assets/images/cast/chenzhibai.png',
+                s:'grid',
+                cc:'c-bai',
+                r:'十七岁，校队 8 号中场。前期外号「影子」，后期外号「天狼」',
+                p:'马来西亚华裔，17岁，168cm，52kg，身形单薄瘦小。黑色短发发丝微遮右眼，该特征为本人专属。拥有结构视角，推演球场1‑3秒多种概率走向，并非预知未来。能力带来双重代价：记忆碎片化遗忘日常琐事、情感记忆钝化。口头禅：嗯。高频短句：不知道。没必要。',
+                q:'眼睛会骗人。结构不会。<cite>——陈知白</cite>',
+                w:'嗯。',
+                hl:['嗯。','不知道。','没必要。','那里。'],
+                t:'移动鼠标：推演球场1‑3秒多种概率走向，众多可能性之中，只有一条会成为现实。'
+            },
+            {
+                k:'nian',
+                n:'苏念',
+                g:'念',
+                img:'assets/images/cast/sunian.png',
+                s:'film',
+                cc:'note',
+                r:'十六岁转学生，校刊摄影、图书馆管理员。匿名场外观众',
+                p:'马来西亚华裔，16岁，158cm，45kg，纤细。齐肩黑发低马尾发尾微卷，笑带梨涡，袖口常沾墨迹。脖子悬挂父亲遗留老式胶片相机；父亲是已经离世的摄影记者。性格外表活泼内心细腻坚韧，暗恋陈知白，纸条书写者；朦胧情愫，不甜宠。',
+                q:'又没好好吃饭？球踢得那么好，饭也要好好吃。——你的场外观众<cite>——苏念</cite>',
+                w:'你好。',
+                hl:['你……记得吃饭吗？','你忘了没关系。我记。','不是给你的，是给书的。'],
+                t:'移动鼠标：像透过取景框看人。点击一下，按下快门。'
+            },
+            {
+                k:'ariff',
+                n:'Ariff Aimran',
+                g:'A',
+                img:'assets/images/cast/ariff.png',
+                s:'line',
+                cc:'c-ariff',
+                r:'四十六岁马来裔，主队主教练',
+                p:'46岁，175cm，72kg，深棕日晒肤色，短发夹杂灰白发丝，眼神锐利克制。常穿深蓝色Polo短袖，胸前银色口哨，标志性姿态双臂交叉抱胸。年轻时拥有和陈知白相同结构视角，曾遭受神秘组织监视，伤病退役回到独中执教，暗中观察、测试、保护陈知白。',
+                q:'看来……终于还是来了。<cite>——Ariff Aimran</cite>',
+                w:'坐吧。',
+                hl:['一次算运气，两次算巧合。十五次，就不能再拿运气解释了。','别让他们知道。他们已经来了。'],
+                t:'点击任意位置，落下一个守护的圈。'
+            },
+            {
+                k:'ye',
+                n:'陈知夜',
+                g:'夜',
+                img:'assets/images/cast/chenzhiye.png',
+                s:'quiet',
+                cc:'c-ye',
+                r:'陈知白亲哥哥，二十岁。主动承担天赋代价，第七章正式登场',
+                p:'马来西亚华裔，20岁，175cm，62kg，比陈知白大3岁。偏瘦青年，骨架比弟弟宽厚。面部骨骼眉骨和弟弟相像；黑色短发，头发完全不遮挡眼睛，严禁复制陈知白遮右眼特征；眼下淡淡的疲惫黑眼圈，神情温柔隐忍带着倦意。穿旧纯色衬衫、深色休闲外套，绝对不穿足球球衣、足球球鞋。清醒自愿选择转嫁承担天赋代价，拥有独立人格，拥有修表工作室，不是弟弟的悲情牺牲品，禁止刻意卖惨煽情。',
+                q:'我不是替你。我选我自己要的。<cite>——陈知夜</cite>',
+                w:'知白。',
+                hl:['知白，你看见的，和别人不一样。','你踢你的。我看得见。','你往亮的地方踢。','你忘了没关系。我记得。'],
+                t:'按住下方的圆，听他把话说完。'
+            }
+        ];
         D.forEach(d=>{if(d.cc!='note')d.q+='<cite>——'+d.n.split(' ')[0]+'</cite>'});
         const IMG=(src,g)=>`<img src="${src}" alt="" onerror="this.parentNode.classList.add('noimg');this.remove()">`;
-        /* 首页线条 */
         const gB=$('#br'),NS='http://www.w3.org/2000/svg';
         for(let i=0;i<11;i++){const a=(-72+i*8)*Math.PI/180,L=520+((i*137)%9)*35,k=(i%2?1:-1)*(30+i*4),ex=140+Math.cos(a)*L,ey=520+Math.sin(a)*L,cx=140+Math.cos(a)*L*.5-Math.sin(a)*k,cy=520+Math.sin(a)*L*.5+Math.cos(a)*k,p=document.createElementNS(NS,'path');p.setAttribute('d',`M140 520Q${cx|0} ${cy|0} ${ex|0} ${ey|0}`);p.setAttribute('class','br'+(i==7?' hi':''));if(i!=7)p.style.animationDelay=i*.1+'s';gB.appendChild(p)}
-        /* 3D 人物环 */
         const ring=$('#ring'),items=[],ls=[];let rot=0,sp=.18,boost=0,mx=.5,inS=false,hv=-1,R=340,vis=true,cur=-1,tm,ti,arm=-1,offs=[];
         D.forEach((d,i)=>{const e=document.createElement('div');e.className='c3';e.dataset.t=d.k;
             e.innerHTML=`<div class="bub"></div><button class="in" aria-label="走进${d.n}的世界"><span class="mw" data-g="${d.g}"><img class="mdl" src="${d.img}" alt="" onerror="this.closest('.c3').classList.add('noimg');this.remove()"></span><span class="cn">${d.n}</span></button>`;
@@ -278,7 +328,6 @@
         new IntersectionObserver(es=>vis=es[es.length-1].isIntersecting).observe(st);
         (function f(){if(vis&&cur<0){if(!rm){const w=hv>=0?0:(inS?(mx-.5)*1.5+.18:.18);sp+=(w-sp)*.06;rot+=sp+boost;boost*=.93}place()}requestAnimationFrame(f)})();
         const kick=d=>rm?(rot+=d*90):(boost=d*5);$('#pv').onclick=()=>kick(-1);$('#nx').onclick=()=>kick(1);
-        /* 欢迎 → 角色简介 */
         const wel=$('#wel'),wt=$('#wt'),prof=$('#prof'),xs=$('#xs'),fx=$('#fx'),NODES=[[.12,.2],[.3,.78],[.52,.12],[.7,.7],[.88,.3],[.62,.9],[.2,.5]];
         function go(){clearTimeout(tm);clearInterval(ti);const d=D[cur];if(!d)return;
             $('#pn').textContent=d.n;$('#pr').textContent=d.r;$('#pp').textContent=d.p;$('#pt').textContent=d.t;
@@ -290,7 +339,6 @@
         function open(i){cur=i;const d=D[i];wel.dataset.t=d.k;wt.textContent='';wel.classList.add('on');document.body.style.overflow='hidden';$$('header,main,footer').forEach(x=>x.setAttribute('inert',''));let n=0;clearInterval(ti);ti=setInterval(()=>{wt.textContent=d.w.slice(0,++n);if(n>=d.w.length)clearInterval(ti)},rm?0:70);tm=setTimeout(go,rm?400:d.w.length*70+900)}
         function close(){clearTimeout(tm);clearInterval(ti);prof.classList.remove('on','hl');wel.classList.remove('on');document.body.style.overflow='';$$('header,main,footer').forEach(x=>x.removeAttribute('inert'));cur=-1}
         wel.onclick=go;$('#cls').onclick=close;addEventListener('keydown',e=>{if(e.key=='Escape'&&cur>=0)close()});
-        /* 专属体验 */
         const lines=(x,y)=>{let best=0,bd=1e9;NODES.forEach((n,i)=>{const dx=n[0]*innerWidth-x,dy=n[1]*innerHeight-y,dd=dx*dx+dy*dy;if(dd<bd){bd=dd;best=i}});[...xs.children].forEach((l,i)=>{l.setAttribute('x1',x);l.setAttribute('y1',y);l.setAttribute('x2',NODES[i][0]*innerWidth);l.setAttribute('y2',NODES[i][1]*innerHeight);l.setAttribute('class',i==best?'hi':'')})};
         prof.addEventListener('pointermove',e=>{if(cur<0)return;const k=D[cur].k;if(k=='nian'){prof.style.setProperty('--mx',e.clientX+'px');prof.style.setProperty('--my',e.clientY+'px')}if(k=='bai')lines(e.clientX,e.clientY)});
         const AL=['你只管看。','有我在。','别回头。'];
@@ -300,7 +348,6 @@
         const hd=$('#hold'),hon=()=>{prof.classList.add('hl');hd.textContent='我自己选的。'},hoff=()=>{prof.classList.remove('hl');hd.textContent='按住'};
         hd.addEventListener('pointerdown',hon);['pointerup','pointerleave','pointercancel','blur'].forEach(t=>hd.addEventListener(t,hoff));
         hd.addEventListener('keydown',e=>{if(e.key==' '||e.key=='Enter')hon()});hd.addEventListener('keyup',hoff);
-        /* 全站：光晕跟随、进度、导航与主题 */
         addEventListener('pointermove',e=>{document.body.style.setProperty('--gx',e.clientX+'px');document.body.style.setProperty('--gy',e.clientY+'px')},{passive:true});
         const links=$$('nav a'),bar=$('#bar'),h=document.documentElement;
         const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;if(hv<0)document.body.dataset.t=e.target.dataset.t;links.forEach(a=>a.classList.toggle('on',a.dataset.n===e.target.dataset.n))}),{rootMargin:'-50% 0px -50% 0px'});
