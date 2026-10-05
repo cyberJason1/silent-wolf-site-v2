@@ -47,12 +47,23 @@
         .stage{padding:14vh 0 10vh;text-align:center;position:relative;overflow:hidden}
         .stage h2.t{margin-bottom:.4em}
         .tip{color:var(--mu);font-size:.95rem;letter-spacing:.1em}
-        .ring{position:relative;height:400px;margin:5rem auto 0;perspective:1500px;max-width:100vw}
-        .c3{--w:clamp(150px,17vw,210px);position:absolute;left:50%;top:0;width:var(--w);margin-left:calc(var(--w)/-2)}
-        .in{display:block;width:100%;background:none;border:0;color:inherit;cursor:pointer;text-align:center;transform:perspective(600px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--s,1));transition:transform .35s}
-        .c3.hv .in{--s:1.16}
-        .c3.hv .fig{box-shadow:0 0 50px color-mix(in srgb,var(--c) 55%,transparent)}
-        .cn{display:block;margin-top:.9rem;letter-spacing:.2em;font-weight:700}
+        .ring{position:relative;height:470px;margin:5rem auto 0;perspective:1500px;max-width:100vw}
+        .c3{--w:clamp(170px,20vw,260px);position:absolute;left:50%;top:0;width:var(--w);margin-left:calc(var(--w)/-2);transition:filter .4s}
+        .ring.hov .c3:not(.hv){filter:brightness(.5) blur(1.5px)}
+        .in{display:block;width:100%;background:none;border:0;color:inherit;cursor:pointer;text-align:center;transform:perspective(700px) translateY(var(--y,0px)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--s,1));transition:transform .35s}
+        .c3.hv .in{--s:1.2;--y:-12px}
+        .mw{position:relative;display:block;aspect-ratio:3/4;animation:bob 5s ease-in-out infinite}
+        .c3:nth-child(even) .mw{animation-delay:-2.5s}
+        .c3.hv .mw{animation-play-state:paused}
+        @keyframes bob{50%{transform:translateY(-8px)}}
+        .mw::after{content:"";position:absolute;left:8%;right:8%;bottom:-3%;height:12%;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--c) 55%,transparent),transparent);opacity:.5;transition:opacity .4s}
+        .c3.hv .mw::after{opacity:1}
+        .mdl{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block;filter:drop-shadow(0 16px 22px #000a);transition:filter .4s}
+        .c3.hv .mdl{filter:drop-shadow(0 0 22px color-mix(in srgb,var(--c) 70%,transparent)) drop-shadow(0 16px 22px #000a)}
+        .cn{display:block;margin-top:1.1rem;letter-spacing:.2em;font-weight:700;opacity:0;transition:opacity .3s}
+        .c3.hv .cn,.c3.noimg .cn{opacity:1}
+        .c3.noimg .mw{background:linear-gradient(160deg,color-mix(in srgb,var(--c) 30%,#121a22),#121a22 80%)}
+        .c3.noimg .mw::before{content:attr(data-g);position:absolute;inset:0;display:grid;place-items:center;font-size:7rem;font-weight:900;color:var(--c);opacity:.4}
         .bub{position:absolute;left:50%;bottom:100%;transform:translate(-50%,6px);margin-bottom:38px;background:#eef2f5;color:#1a232b;padding:.5rem .9rem;border-radius:12px;font-size:.9rem;line-height:1.5;white-space:nowrap;opacity:0;transition:.25s;pointer-events:none}
         .bub::after{content:"";position:absolute;left:50%;top:100%;margin-left:-6px;border:6px solid transparent;border-top-color:#eef2f5}
         .c3.hv .bub{opacity:1;transform:translate(-50%,0)}
@@ -135,6 +146,7 @@
     <a class="brand" href="#top"><img src="assets/images/logo.png" alt="" onerror="this.remove()">沉默之狼</a>
     <nav><a href="#story" data-n="story">故事</a><a href="#trailer" data-n="trailer">预告</a><a href="#cast" data-n="cast">人物</a><a href="#stills" data-n="stills">剧照</a><a href="#archive" data-n="archive">档案</a></nav>
 </header>
+
 <main>
     <section class="hero" id="top" data-t="base" data-n="top">
         <svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g id="br"></g><circle cx="140" cy="520" r="5"/></svg>
@@ -142,6 +154,7 @@
         <p class="slogan">眼睛会骗人。结构不会。</p>
         <p class="sub">Silent Wolf｜第一卷《看见结构的人》</p>
     </section>
+
     <section class="sec story" id="story" data-t="base" data-n="story">
         <div class="w">
             <h2 class="t">故事</h2>
@@ -154,32 +167,32 @@
             <div><b>第一卷</b><span>限定系列真人短片，开放结局，本卷无暴力冲突</span></div>
         </div>
     </section>
+
     <section class="sec" id="trailer" data-t="base" data-n="trailer">
         <h2 class="t">先导预告</h2>
         <div class="vid">
-            <!-- ========== 视频封面 poster ========== -->
-            <video controls preload="metadata" poster="assets/images/poster.png">
-                <!-- ========== 视频文件（assets/videos） ========== -->
-                <source src="assets/videos/trailer.mp4" type="video/mp4">您的浏览器不支持视频播放，请下载预告观看。
-            </video>
-        </div>
+            <!-- ========== 视频封面 poster + 视频文件（assets/videos） ========== -->
+            <video controls preload="metadata" poster="assets/images/poster.png"><source src="assets/videos/trailer.mp4" type="video/mp4">您的浏览器不支持视频播放，请下载预告观看。</video></div>
     </section>
+
     <section class="stage" id="cast" data-t="base" data-n="cast">
         <h2 class="t">人物</h2>
         <p class="tip">靠近他们，会听见一句问候。点击，走进他们的世界。</p>
         <div class="ring" id="ring"></div>
         <button class="arr l" id="pv" aria-label="上一位">‹</button><button class="arr r" id="nx" aria-label="下一位">›</button>
     </section>
+
     <section class="sec" id="stills" data-t="base" data-n="stills">
         <h2 class="t">剧照</h2>
+        <!-- ========== 剧照 1~4 ========== -->
         <div class="sg" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem">
-            <!-- ========== 剧照 1~4 ========== -->
             <figure class="st" data-p="剧照 1｜放入 assets/images/stills/1.jpg"><img src="assets/images/stills/1.jpg" alt="剧照 1" onerror="this.parentNode.classList.add('e');this.remove()"></figure>
             <figure class="st" data-p="剧照 2｜放入 assets/images/stills/2.jpg"><img src="assets/images/stills/2.jpg" alt="剧照 2" onerror="this.parentNode.classList.add('e');this.remove()"></figure>
             <figure class="st" data-p="剧照 3｜放入 assets/images/stills/3.jpg"><img src="assets/images/stills/3.jpg" alt="剧照 3" onerror="this.parentNode.classList.add('e');this.remove()"></figure>
             <figure class="st" data-p="剧照 4｜放入 assets/images/stills/4.jpg"><img src="assets/images/stills/4.jpg" alt="剧照 4" onerror="this.parentNode.classList.add('e');this.remove()"></figure>
         </div>
     </section>
+
     <section class="sec" id="archive" data-t="base" data-n="archive">
         <h2 class="t">项目档案</h2>
         <blockquote class="q">你踢你的。我看得见。</blockquote>
@@ -192,6 +205,7 @@
     </section>
 </main>
 <footer>© 2026 《沉默之狼》限定系列真人短片｜Silent Wolf</footer>
+
 <div id="wel" aria-live="polite"><p id="wt"></p></div>
 <div id="prof" role="dialog" aria-modal="true" aria-label="角色简介" data-t="bai">
     <svg id="xs"></svg><div id="lens"></div><div id="fx"></div>
@@ -203,28 +217,30 @@
     <div class="stw"><figure class="st" id="ps"></figure></div>
     <button id="hold">按住</button>
 </div>
+
 <script>
     (()=>{
         const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
         const D=[
-            /* ========== 4角色头像图片 img:"这里" ========== */
+            /* ========== 4 角色头像图片 img ========== */
             {k:'bai',n:'陈知白',g:'白',img:'assets/images/cast/chenzhibai.png',s:'grid',cc:'c-bai',r:'十七岁，校队 8 号中场。起初是影子，后来是天狼',p:'寡言内敛，口头禅是「嗯」。他看得见十三秒里的每一种可能，却会忘掉生活里的琐事。黑色短发微遮右眼。',q:'我看见的不是未来，只是尚未发生的可能。',w:'嗯。你来了。请随便看。',hl:['嗯。','十三秒。够了。','你站的位置，不错。'],t:'移动鼠标：十三秒里所有的走向，其中一条会被看见。'},
             {k:'nian',n:'苏念',g:'念',img:'assets/images/cast/sunian.png',s:'film',cc:'note',r:'十六岁转学生，校刊摄影。场外观众',p:'脖子上挂着父亲留下的老式胶片相机。细腻、温柔，笨拙地理解足球。她是那个写匿名纸条的人。',q:'又没好好吃饭？球踢得那么好，饭也要好好吃。<cite>——你的场外观众</cite>',w:'你好呀，我是苏念。别动，先让我看看你。',hl:['嗨，别动，我给你拍一张。','今天有好好吃饭吗？','我一直在看台那边。'],t:'移动鼠标：像透过取景框看人。点击一下，按下快门。'},
             {k:'ariff',n:'Ariff Aimran',g:'A',img:'assets/images/cast/ariff.png',s:'line',cc:'c-ariff',r:'四十六岁马来裔教练，校队主教练',p:'年轻时拥有同样的结构视角，曾被神秘组织监视。退役后回到中学，不多说话，只是看着，护着。',q:'你只管看。其余的，交给我。',w:'欢迎。坐吧，这里有我。',hl:['来了？','慢慢来，我在这儿。','看比赛，也看人。'],t:'点击任意位置，落下一个守护的圈。'},
-            {k:'ye',n:'陈知夜',g:'夜',img:'assets/images/cast/chenzhiye.png',s:'quiet',cc:'c-ye',r:'陈知白的哥哥，二十岁。背负代价的人，第七章正式登场',p:'清醒、自愿地承担天赋的代价。他有自己的人格，不是谁的悲情工具。旧纯色衬衫，深色休闲外套，不穿球衣，也不穿球鞋。',q:'这不是牺牲。是我选的。',w:'你好，我是陈知夜。慢慢看，不用着急。',hl:['不用替我难过。','你好。别担心，我很清醒。','我没事。真的。'],t:'按住下方的圆，听他把话说完。'}
-        ];
+            {k:'ye',n:'陈知夜',g:'夜',img:'assets/images/cast/chenzhiye.png',s:'quiet',cc:'c-ye',r:'陈知白的哥哥，二十岁。背负代价的人，第七章正式登场',p:'清醒、自愿地承担天赋的代价。他有自己的人格，不是谁的悲情工具。旧纯色衬衫，深色休闲外套，不穿球衣，也不穿球鞋。',q:'这不是牺牲。是我选的。',w:'你好，我是陈知夜。慢慢看，不用着急。',hl:['不用替我难过。','你好。别担心，我很清醒。','我没事。真的。'],t:'按住下方的圆，听他把话说完。'}];
         D.forEach(d=>{if(d.cc!='note')d.q+='<cite>——'+d.n.split(' ')[0]+'</cite>'});
         const IMG=(src,g)=>`<img src="${src}" alt="" onerror="this.parentNode.classList.add('noimg');this.remove()">`;
         /* 首页线条 */
         const gB=$('#br'),NS='http://www.w3.org/2000/svg';
-        for(let i=0;i<11;i++){const a=(-72+i*8)*Math.PI/180,L=520+((i*137)%9)*35,k=(i%2?1:-1)*(30+i*4),ex=140+Math.cos(a)*L,ey=520+Math.sin(a)*L*.5-Math.sin(a)*k,cy=520+Math.sin(a)*L*.5+Math.cos(a)*k,p=document.createElementNS(NS,'path');p.setAttribute('d',`M140 520Q${cx|0} ${cy|0} ${ex|0} ${ey|0}`);p.setAttribute('class','br'+(i==7?' hi':''));if(i!=7)p.style.animationDelay=i*.1+'s';gB.appendChild(p)}
+        for(let i=0;i<11;i++){const a=(-72+i*8)*Math.PI/180,L=520+((i*137)%9)*35,k=(i%2?1:-1)*(30+i*4),ex=140+Math.cos(a)*L,ey=520+Math.sin(a)*L,cx=140+Math.cos(a)*L*.5-Math.sin(a)*k,cy=520+Math.sin(a)*L*.5+Math.cos(a)*k,p=document.createElementNS(NS,'path');p.setAttribute('d',`M140 520Q${cx|0} ${cy|0} ${ex|0} ${ey|0}`);p.setAttribute('class','br'+(i==7?' hi':''));if(i!=7)p.style.animationDelay=i*.1+'s';gB.appendChild(p)}
         /* 3D 人物环 */
         const ring=$('#ring'),items=[],ls=[];let rot=0,sp=.18,boost=0,mx=.5,inS=false,hv=-1,R=340,vis=true,cur=-1,tm,ti;
         D.forEach((d,i)=>{const e=document.createElement('div');e.className='c3';e.dataset.t=d.k;
-            e.innerHTML=`<div class="bub"></div><button class="in" aria-label="走进${d.n}的世界"><span class="fig" data-s="${d.s}"><span class="ph" data-g="${d.g}">${IMG(d.img)}</span></span><span class="cn">${d.n}</span></button>`;
-            const b=e.querySelector('.in'),bub=e.querySelector('.bub');ls[i]=-1;
-            const on=()=>{hv=i;e.classList.add('hv');let j;do{j=Math.random()*d.hl.length|0}while(j==ls[i]&&d.hl.length>1);ls[i]=j;bub.textContent=d.hl[j];document.body.dataset.t=d.k},
-                off=()=>{if(hv!=i)return;hv=-1;e.classList.remove('hv');b.style.removeProperty('--rx');b.style.removeProperty('--ry');document.body.dataset.t='base'};
+            e.innerHTML=`<div class="bub"></div><button class="in" aria-label="走进${d.n}的世界"><span class="mw" data-g="${d.g}"><img class="mdl" src="${d.img}" alt="" onerror="this.closest('.c3').classList.add('noimg');this.remove()"></span><span class="cn">${d.n}</span></button>`;
+            const b=e.querySelector('.in'),bub=e.querySelector('.bub');ls[i]=-1;let tt,t2;
+            const say=s=>{clearInterval(tt);let n=0;bub.textContent='';tt=setInterval(()=>{bub.textContent=s.slice(0,++n);if(n>=s.length)clearInterval(tt)},rm?0:45)},
+                pick=()=>{let j;do{j=Math.random()*d.hl.length|0}while(j==ls[i]&&d.hl.length>1);ls[i]=j;return d.hl[j]},
+                on=()=>{if(hv==i)return;hv=i;e.classList.add('hv');ring.classList.add('hov');say(pick());clearTimeout(t2);t2=setTimeout(()=>say(pick()),3200);document.body.dataset.t=d.k},
+                off=()=>{if(hv!=i)return;hv=-1;clearTimeout(t2);clearInterval(tt);e.classList.remove('hv');ring.classList.remove('hov');b.style.removeProperty('--rx');b.style.removeProperty('--ry');document.body.dataset.t='base'};
             e.addEventListener('pointerenter',on);e.addEventListener('pointerleave',off);b.addEventListener('focus',on);b.addEventListener('blur',off);
             b.addEventListener('pointermove',ev=>{const r=b.getBoundingClientRect();b.style.setProperty('--ry',((ev.clientX-r.left)/r.width-.5)*22+'deg');b.style.setProperty('--rx',(.5-(ev.clientY-r.top)/r.height)*18+'deg')});
             b.addEventListener('click',()=>open(i));ring.append(e);items.push(e)});
@@ -240,10 +256,7 @@
             $('#pn').textContent=d.n;$('#pr').textContent=d.r;$('#pp').textContent=d.p;$('#pt').textContent=d.t;
             const q=$('#pq');q.className='card '+d.cc;q.innerHTML=d.q;
             $('#pf').dataset.s=d.s;$('#pph').className='ph';$('#pph').dataset.g=d.g;$('#pph').innerHTML=IMG(d.img);
-            const s=$('#ps');s.className='st';
-            /* ========== 角色弹窗内剧照（动态拼接，d.k 对应 bai/nian/ariff/ye） ========== */
-            s.dataset.p='角色剧照｜放入 assets/images/stills/'+d.k+'.jpg';
-            s.innerHTML=`<img src="assets/images/stills/${d.k}.jpg" alt="${d.n}剧照" onerror="this.parentNode.classList.add('e');this.remove()">`;
+            const s=$('#ps');s.className='st';s.dataset.p='角色剧照｜放入 assets/images/stills/'+d.k+'.jpg';s.innerHTML=`<img src="assets/images/stills/${d.k}.jpg" alt="${d.n}剧照" onerror="this.parentNode.classList.add('e');this.remove()">`;
             prof.dataset.t=d.k;xs.innerHTML=d.k=='bai'?NODES.map(()=>'<line/>').join(''):'';$('#hold').textContent='按住';
             prof.scrollTop=0;prof.classList.add('on');wel.classList.remove('on');setTimeout(()=>$('#cls').focus(),300)}
         function open(i){cur=i;const d=D[i];wel.dataset.t=d.k;wt.textContent='';wel.classList.add('on');document.body.style.overflow='hidden';let n=0;clearInterval(ti);ti=setInterval(()=>{wt.textContent=d.w.slice(0,++n);if(n>=d.w.length)clearInterval(ti)},rm?0:70);tm=setTimeout(go,rm?400:d.w.length*70+900)}
