@@ -5,20 +5,30 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>沉默之狼 | Silent Wolf</title>
     <meta name="theme-color" content="#121a22">
-    <!-- 浏览器标签小图标 favicon -->
-    <link rel="icon" type="image/png" href="favicon.png">
-    <!-- 社交分享 OG 卡片（上线后请把 og:image 改成完整网址，如 https://你的域名/preview.png，建议 1200×630） -->
+    <!-- 浏览器标签小图标 favicon 【已修正路径 assets/images/favicon.png】 -->
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <!-- ===== Discord分享预览卡片 OG标签【已修复，使用完整绝对链接】 ===== -->
     <meta property="og:site_name" content="沉默之狼 Silent Wolf">
     <meta property="og:locale" content="zh_CN">
     <meta property="og:type" content="website">
     <meta property="og:title" content="沉默之狼｜看见结构的人 · 少年足球悬疑短片">
     <meta property="og:description" content="沉默之狼｜马来西亚华文独中少年足球悬疑短片。天赋伴随代价，在球场的表象之下窥见真实。眼睛会骗人。结构不会。第一卷《看见结构的人》。">
-    <meta property="og:image" content="preview.png">
+    <meta property="og:image" content="https://cyberJason1.github.io/silent-wolf-site-v2/assets/images/poster.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://cyberJason1.github.io/silent-wolf-site-v2/assets/images/poster.png">
     <meta name="description" content="沉默之狼｜马来西亚华文独中校园足球写实悬疑少年成长故事。眼睛会骗人。结构不会。限定系列真人短片，第一卷《看见结构的人》">
     <style>
         @property --t{syntax:'<color>';inherits:true;initial-value:#64a8d8}
-        :root{--bg:#121a22;--tx:#eef2f5;--mu:#93a5b1;--nav:60px}
+        :root{
+            --bg:#121a22;
+            --tx:#eef2f5;
+            --mu:#93a5b1;
+            --nav:60px;
+            --mx:50%;
+            --my:50%;
+        }
         *{box-sizing:border-box;margin:0;padding:0}
         html{scroll-behavior:smooth;scroll-padding-top:var(--nav);scrollbar-gutter:stable}
         [data-t=base]{--c:#64a8d8}[data-t=bai]{--c:#64a8d8}[data-t=nian]{--c:#e3a15f}[data-t=ariff]{--c:#a9b36a}[data-t=ye]{--c:#a79bc4}
@@ -184,7 +194,8 @@
         <h2 class="t">先导预告</h2>
         <div class="vid">
             <!-- ========== 视频封面 poster + 视频文件（assets/videos） ========== -->
-            <video controls playsinline preload="metadata" poster="assets/images/poster.png"><source src="assets/videos/trailer.mp4" type="video/mp4">您的浏览器不支持视频播放，请下载预告观看。</video></div>
+            <video controls playsinline preload="metadata" poster="assets/images/poster.png"><source src="assets/videos/trailer.mp4" type="video/mp4">您的浏览器不支持视频播放，请下载预告观看。</video>
+        </div>
     </section>
 
     <section class="stage" id="cast" data-t="base" data-n="cast">
@@ -218,6 +229,7 @@
         </div>
     </section>
 </main>
+
 <footer>© 2026 《沉默之狼》限定系列真人短片｜Silent Wolf</footer>
 
 <div id="wel" aria-live="polite"><p id="wt"></p></div>
@@ -239,7 +251,7 @@
             /* ========== 4 角色头像图片 img ========== */
             {k:'bai',n:'陈知白',g:'白',img:'assets/images/cast/chenzhibai.png',s:'grid',cc:'c-bai',r:'十七岁，校队 8 号中场。起初是影子，后来是天狼',p:'寡言内敛，口头禅是「嗯」。他看得见十三秒里的每一种可能，却会忘掉生活里的琐事。黑色短发微遮右眼。',q:'我看见的不是未来，只是尚未发生的可能。',w:'嗯。你来了。请随便看。',hl:['嗯。','十三秒。够了。','你站的位置，不错。'],t:'移动鼠标：十三秒里所有的走向，其中一条会被看见。'},
             {k:'nian',n:'苏念',g:'念',img:'assets/images/cast/sunian.png',s:'film',cc:'note',r:'十六岁转学生，校刊摄影。场外观众',p:'脖子上挂着父亲留下的老式胶片相机。细腻、温柔，笨拙地理解足球。她是那个写匿名纸条的人。',q:'又没好好吃饭？球踢得那么好，饭也要好好吃。<cite>——你的场外观众</cite>',w:'你好呀，我是苏念。别动，先让我看看你。',hl:['嗨，别动，我给你拍一张。','今天有好好吃饭吗？','我一直在看台那边。'],t:'移动鼠标：像透过取景框看人。点击一下，按下快门。'},
-            {k:'ariff',n:'Ariff Aimran',g:'A',img:'assets/images/cast/ariff.png',s:'line',cc:'c-ariff',r:'四十六岁马来裔教练，校队主教练',p:'年轻时拥有同样的结构视角，曾被神秘组织监视。退役后回到中学，不多说话，只是看着，护着。',q:'你只管看。其余的，交给我。',w:'欢迎。坐吧，这里有我。',hl:['来了？','慢慢来，我在这儿。','看比赛，也看人。'],t:'点击任意位置，落下一个守护的圈。'},
+            {k:'ariff',n:'Ariff Aimran',g:'A',img:'assets/images/cast/ariff.png',s:'line',cc:'c-ariff',r:'四十六岁马来裔教练，校队主教练',p:'年轻时拥有同样的天赋，也曾被神秘组织监视。退役后回到中学，不多说话，只是看着，护着。',q:'你只管看。其余的，交给我。',w:'欢迎。坐吧，这里有我。',hl:['来了？','慢慢来，我在这儿。','看比赛，也看人。'],t:'点击任意位置，落下一个守护的圈。'},
             {k:'ye',n:'陈知夜',g:'夜',img:'assets/images/cast/chenzhiye.png',s:'quiet',cc:'c-ye',r:'陈知白的哥哥，二十岁。背负代价的人，第七章正式登场',p:'清醒、自愿地承担天赋的代价。他有自己的人格，不是谁的悲情工具。旧纯色衬衫，深色休闲外套，不穿球衣，也不穿球鞋。',q:'这不是牺牲。是我选的。',w:'你好，我是陈知夜。慢慢看，不用着急。',hl:['不用替我难过。','你好。别担心，我很清醒。','我没事。真的。'],t:'按住下方的圆，听他把话说完。'}];
         D.forEach(d=>{if(d.cc!='note')d.q+='<cite>——'+d.n.split(' ')[0]+'</cite>'});
         const IMG=(src,g)=>`<img src="${src}" alt="" onerror="this.parentNode.classList.add('noimg');this.remove()">`;
@@ -255,7 +267,8 @@
                 pick=()=>{let j;do{j=Math.random()*d.hl.length|0}while(j==ls[i]&&d.hl.length>1);ls[i]=j;return d.hl[j]},
                 on=()=>{if(hv==i)return;if(hv>=0)offs[hv]();hv=i;e.classList.add('hv');ring.classList.add('hov');say(pick());clearTimeout(t2);t2=setTimeout(()=>say(pick()),3200);document.body.dataset.t=d.k},
                 off=()=>{if(hv!=i)return;hv=-1;clearTimeout(t2);clearInterval(tt);e.classList.remove('hv');ring.classList.remove('hov');b.style.removeProperty('--rx');b.style.removeProperty('--ry');document.body.dataset.t='base'};offs[i]=off;
-            e.addEventListener('pointerenter',on);e.addEventListener('pointerleave',off);b.addEventListener('focus',on);b.addEventListener('blur',off);
+            e.addEventListener('pointerenter',on);e.addEventListener('pointerleave',off);
+            b.addEventListener('focus',on);b.addEventListener('blur',off);
             b.addEventListener('pointermove',ev=>{const r=b.getBoundingClientRect();b.style.setProperty('--ry',((ev.clientX-r.left)/r.width-.5)*22+'deg');b.style.setProperty('--rx',(.5-(ev.clientY-r.top)/r.height)*18+'deg')});
             b.addEventListener('pointerdown',ev=>{pt=ev.pointerType});
             b.addEventListener('click',ev=>{if(pt=='touch'&&ev.detail&&arm!=i){arm=i;on();clearTimeout(t3);t3=setTimeout(()=>{arm=-1;off()},4500);return}arm=-1;clearTimeout(t3);open(i)});ring.append(e);items.push(e)});
