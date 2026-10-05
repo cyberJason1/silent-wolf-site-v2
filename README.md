@@ -1,4 +1,3 @@
-[![Demo Pages](https://img.shields.io/badge/Demo‑Pages‑silent‑wolf‑site‑v2‑#222e3a?style=flat‑square)](https://cyberjason1.github.io/silent‑wolf‑site‑v2/)
 
 > **眼睛会骗人。结构不会。**
 > 纸条定稿：**又没好好吃饭？球踢得那么好，饭也要好好吃。——你的场外观众**
