@@ -6,7 +6,7 @@
 走进马来西亚华文独中少年足球悬疑世界。
 沉浸式交互式人物环，每个角色拥有专属视觉体验，浏览故事、预告片与剧照。
 
-🔗 **在线访问**：https://cyberjason1.github.io/silent‑wolf‑site‑v2/
+🔗 **在线访问**：[https://cyberjason1.github.io/silent‑wolf‑site‑v2/](https://cyberjason1.github.io/silent-wolf-site-v2/)
 
 ## ✨ 网站功能特性
 1. **电影感首页大屏**
