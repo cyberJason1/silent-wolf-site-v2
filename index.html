@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>沉默之狼 | The Silent Wolf</title>
   <meta name="theme-color" content="#121a22">
-  <!-- 浏览器标签小图标 favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
-  <!-- 社交分享 OG 卡片（上线后请把 og:image 改成完整网址，如 https://你的域名/preview.png，建议 1200×630） -->
   <meta property="og:site_name" content="沉默之狼 The Silent Wolf">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="website">
@@ -54,7 +52,6 @@
     .facts span{color:var(--mu);font-size:.9rem}
     .vid{aspect-ratio:16/9;max-width:1100px;background:#000;border:1px solid #ffffff22}
     .vid video{width:100%;height:100%;display:block}
-    /* 人物 3D 环 */
     .stage{padding:14vh 0 10vh;text-align:center;position:relative;overflow:hidden}
     .stage h2.t{margin-bottom:.4em}
     .tip{color:var(--mu);font-size:.95rem;letter-spacing:.1em}
@@ -81,7 +78,6 @@
     .c3.hv .bub{opacity:1;transform:translate(-50%,0)}
     .arr{position:absolute;top:50%;margin-top:-24px;width:48px;height:48px;border-radius:50%;border:1px solid #ffffff44;background:#121a22aa;color:var(--tx);font-size:1.4rem;cursor:pointer;z-index:999}
     .arr.l{left:4vw}.arr.r{right:4vw}
-    /* 画框 */
     .fig{position:relative;aspect-ratio:3/4;width:100%;max-width:430px;max-height:78vh;justify-self:center;margin:0 auto}
     .ph{position:absolute;inset:0;overflow:hidden;display:block;background:linear-gradient(160deg,color-mix(in srgb,var(--c) 30%,#121a22),#121a22 80%);transition:filter .6s}
     .ph img{width:100%;height:100%;object-fit:contain;object-position:center bottom;display:block}
@@ -96,7 +92,6 @@
     .fig[data-s=band]{border-left:10px solid var(--c)}
     .fig[data-s=skew]{clip-path:polygon(0 0,100% 5%,100% 100%,0 95%)}
     .fig[data-s=skew] .ph{background-image:repeating-linear-gradient(115deg,color-mix(in srgb,var(--c) 18%,transparent) 0 2px,transparent 2px 26px),linear-gradient(160deg,color-mix(in srgb,var(--c) 30%,#121a22),#121a22 80%)}
-    /* 金句卡 */
     .card{position:relative;max-width:25em;margin-top:2.2rem;padding:1.4rem 1.7rem;font-size:1.2rem;line-height:1.85;letter-spacing:.06em;transition:transform .8s,box-shadow .8s}
     .card cite{display:block;margin-top:.8em;font-size:.85rem;font-style:normal;text-align:right;letter-spacing:.1em;opacity:.8}
     .note{background:#f1ebe0;color:#3a3228;transform:rotate(1.2deg);box-shadow:0 12px 30px #0007;font-style:italic}
@@ -108,7 +103,11 @@
     .c-ye{padding:1.8rem .4rem;font-size:1.45rem;font-weight:300;color:#e6e1f0;border-top:1px solid var(--c);border-bottom:1px solid var(--c);box-shadow:0 30px 60px -40px var(--c)}
     .c-faris{padding-left:1.9rem;font-weight:700;background:color-mix(in srgb,var(--c) 12%,#121a22);border-left:6px solid var(--c)}
     .c-rizal{transform:skewX(-6deg);background:color-mix(in srgb,var(--c) 10%,#121a22);border:1px solid var(--c)}
-    /* 欢迎 + 角色简介 */
+    .easter-egg-area{margin-top:2.4rem;text-align:center;display:none}
+    .easter-circle-btn{width:64px;height:64px;border-radius:50%;border:2px solid #848eac;background:#161d27;color:#dde4eb;cursor:pointer;transition:0.35s ease;outline:none}
+    .easter-circle-btn.active{box-shadow:0 0 16px 4px rgba(132,142,172,0.45);border-color:#a2acc8}
+    .easter-hint-text{margin-top:0.7rem;font-size:0.85rem;opacity:0.65}
+    .modal-text-wrap{transition:opacity 0.38s ease}
     #wel{position:fixed;inset:0;z-index:110;display:grid;place-items:center;padding:6vw;text-align:center;cursor:pointer;background:radial-gradient(circle at 50% 50%,color-mix(in srgb,var(--c) 25%,#0b1117),#0b1117 75%);opacity:0;visibility:hidden;transition:opacity .6s,visibility .6s}
     #wel.on{opacity:1;visibility:visible}
     #wt{font-size:clamp(1.5rem,4vw,2.6rem);letter-spacing:.14em;line-height:1.8;min-height:2em}
@@ -139,15 +138,9 @@
     .fl{position:absolute;inset:0;background:#fff;animation:fl .5s forwards}@keyframes fl{from{opacity:.85}to{opacity:0}}
     .rp{position:absolute;width:20px;height:20px;margin:-10px;border:2px solid var(--c);border-radius:50%;animation:rp 1.3s ease-out forwards}
     @keyframes rp{to{transform:scale(7);opacity:0}}
-    .rt{position:absolute;color:var(--c);letter-spacing:.1em;animation:rt 1.6s forwards}@keyframes rt{to{opacity:0;transform:translateY(-26px)}}
-    #hold{display:none;position:fixed;left:50%;bottom:6vh;width:84px;height:84px;margin-left:-42px;border-radius:50%;border:1px solid var(--c);background:transparent;color:var(--tx);cursor:pointer;z-index:4;transition:.6s;font-size:.85rem;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
-    #prof[data-t=ye] #hold{display:block}
-    #prof.hl #hold{background:color-mix(in srgb,var(--c) 40%,transparent);transform:scale(1.35);box-shadow:0 0 60px var(--c)}
-    /* 金句与档案 */
-    #prof.hl .fig .ph{filter:brightness(.16) saturate(.15);transition:filter 1.6s ease-out}
+    .rt{position:absolute;max-width:18em;color:var(--c);letter-spacing:.1em;animation:rt 1.6s forwards}@keyframes rt{to{opacity:0;transform:translateY(-26px)}}
     .pnx{position:fixed;top:50%;margin-top:-22px;width:44px;height:44px;border-radius:50%;border:1px solid #ffffff44;background:#0b1117aa;color:var(--tx);font-size:1.4rem;cursor:pointer;z-index:5;transition:border-color .3s}
     .pnx:hover{border-color:var(--c)}.pnx.l{left:2vw}.pnx.r{right:2vw}
-    /* 项目档案：标题=片头字幕式小标，金句=取景框内的字幕墙，信息=片尾字幕式排版 */
     .arc{padding:14vh 6vw 10vh}
     .ah{display:flex;align-items:center;gap:1.4rem;max-width:980px;margin:0 auto 10vh}
     .ah h2{font-size:.95rem;font-weight:600;letter-spacing:.7em;color:var(--t);white-space:nowrap;transition:color 1.2s}
@@ -175,7 +168,6 @@
 <body data-t="base">
 <div class="wash"></div><div id="bar"></div>
 <header>
-  <!-- ========== LOGO 图片 ========== -->
   <a class="brand" href="#top"><img src="assets/images/logo.png" alt="" onerror="this.remove()">沉默之狼</a>
   <nav><a href="#story" data-n="story">故事</a><a href="#trailer" data-n="trailer">预告</a><a href="#cast" data-n="cast">人物</a><a href="#stills" data-n="stills">剧照</a><a href="#archive" data-n="archive">档案</a></nav>
 </header>
@@ -201,7 +193,6 @@
   <section class="sec" id="trailer" data-t="base" data-n="trailer">
     <h2 class="t">先导预告</h2>
     <div class="vid">
-      <!-- ========== 视频封面 poster + 视频文件（assets/videos） ========== -->
       <video controls playsinline preload="metadata" poster="assets/images/poster.png"><source src="assets/videos/trailer.mp4" type="video/mp4">您的浏览器不支持视频播放，请下载预告观看。</video></div>
   </section>
   <section class="stage" id="cast" data-t="base" data-n="cast">
@@ -214,7 +205,6 @@
   </section>
   <section class="sec" id="stills" data-t="base" data-n="stills">
     <h2 class="t">剧照</h2>
-    <!-- ========== 剧照 1~4 ========== -->
     <div class="sg" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.2rem">
       <figure class="st" data-p="剧照 1｜放入 assets/images/stills/1.jpg"><img src="assets/images/stills/1.jpg" alt="剧照 1" onerror="this.parentNode.classList.add('e');this.remove()"></figure>
       <figure class="st" data-p="剧照 2｜放入 assets/images/stills/2.jpg"><img src="assets/images/stills/2.jpg" alt="剧照 2" onerror="this.parentNode.classList.add('e');this.remove()"></figure>
@@ -245,30 +235,35 @@
   <button class="pnx l" id="sw-l" aria-label="上一位角色">‹</button><button class="pnx r" id="sw-r" aria-label="下一位角色">›</button>
   <div class="pw">
     <div class="fig" id="pf"><div class="ph" id="pph"></div></div>
-    <div><h2 id="pn"></h2><div class="role" id="pr"></div><p class="d" id="pp"></p><blockquote class="card" id="pq"></blockquote><p class="hint" id="pt"></p></div>
+    <div>
+      <h2 id="pn"></h2>
+      <div class="role" id="pr"></div>
+      <div class="modal-text-wrap" id="pp"></div>
+      <div class="easter-egg-area" id="easterWrap">
+        <button class="easter-circle-btn" id="easterBtn"></button>
+        <div class="easter-hint-text" id="easterHint">点击按钮，聆听一段隐藏独白</div>
+      </div>
+      <blockquote class="card" id="pq"></blockquote>
+      <p class="hint" id="pt"></p>
+    </div>
   </div>
   <div class="stw"><figure class="st" id="ps"></figure></div>
-  <button id="hold">按住</button>
 </div>
 <script>
   (()=>{
     const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
-    /* ===== 修改：角色数组D，圆环排布顺序：0陈知白(正前中心) →向右顺时针苏念→Faris→Rizal→Ariff →向左陈知夜 ===== */
     const D=[
       {k:'bai',n:'陈知白',g:'白',img:'assets/images/cast/chenzhibai.png',s:'grid',cc:'c-bai',r:'十七岁，高二，校队 8 号中场。前期人称「影子」，后期被叫作「天狼」',p:'黑色短发，发丝微遮右眼。话少内敛，观察力极强，不善解释，口头禅是「嗯」。高强度使用结构视角之后，他会头痛疲惫，生活里的一些小事，也总是记不住。',q:'我记得你就够了。',w:'嗯。你在这里。',hl:['嗯。','不知道。','没必要。','那里。'],t:'移动鼠标：多条可能的走向铺开，其中一条会逐渐清晰。'},
       {k:'nian',n:'苏念',g:'念',img:'assets/images/cast/sunian.png',s:'film',cc:'note',r:'十六岁，高二转学生，校刊摄影，也是图书馆管理员',p:'外表开朗，内心细腻坚韧，会笨拙地尝试去理解足球，习惯躲在相机的取景框后面，不敢直接用肉眼面对人和事。齐肩黑发低马尾，笑起来有梨涡，袖口常沾着墨迹，脖子上挂着父亲留下的老式胶片相机。',q:'你忘了没关系。我记。',w:'照片不会骗人。但眼睛会。',hl:['你踢得真好。……我是说，真的。','你……记得吃饭吗？','你先记得吃饭。'],t:'移动鼠标：像透过取景框看人。点击一下，按下快门。'},
-      {k:'faris',n:'Faris 法里斯',g:'F',img:'assets/images/cast/faris.png',s:'band',cc:'c-faris',r:'十七岁，马来裔，主队队长，深蓝 10 号',p:'左臂戴着队长袖标，体态结实匀称，浓眉，眼神直率，下颌清晰。他想带队赢下校际赛，证明普通人的努力同样有价值；他相信解释与沟通才是尊重，所以起初，他看不懂这个什么都不说的队友。',q:'你至少解释一次。你看得见，为什么不告诉我们？',w:'影子！快一点，训练要开始了！',hl:['影子！快一点，训练要开始了！','你至少解释一次。你看得见，为什么不告诉我们？','天狼！快一点，训练要开始了！'],t:'点击任意位置，听他喊一声。',cl:['影子！快一点，训练要开始了！','你至少解释一次。你看得见，为什么不告诉我们？','天狼！快一点，训练要开始了。']},
-      {k:'rizal',n:'Rizal 里扎尔',g:'R',img:'assets/images/cast/rizal.png',s:'skew',cc:'c-rizal',r:'十八岁，马来裔，客队 10 号，浅红球衣',p:'街头足球出身，重心低，脚步灵活，眼神锐利得难以预测，嘴角带着自信的浅笑。他的动作不遵循任何战术跑位，不靠推演，只靠身体本能踢球。他不是反派，只是从不看线。',q:'你的线，画不到我。',w:'你看线。我只看球门。',hl:['你看线。我只看球门。','你的线，画不到我。'],t:'移动鼠标：每一条线，都停在他面前。'},
       {k:'ariff',n:'Ariff Aimran',g:'A',img:'assets/images/cast/ariff.png',s:'line',cc:'c-ariff',r:'四十六岁，马来裔，校队主教练',p:'深蓝 Polo，胸前一枚银色口哨，常双臂交叉抱胸。短发夹着灰白，眼神锐利克制。伤病退役后回到中学执教，他不多说话，却似乎比谁都懂陈知白看球的方式。',q:'看来……终于还是来了。',w:'一次算运气，两次算巧合。十五次，就不能再拿运气解释了。',hl:['看来……终于还是来了。','别让他们知道。他们已经来了。','一次算运气，两次算巧合。十五次，就不能再拿运气解释了。'],t:'点击任意位置，他会开口。',cl:['看来……终于还是来了。','一次算运气，两次算巧合。十五次，就不能再拿运气解释了。','别让他们知道。他们已经来了。']},
-      {k:'ye',n:'陈知夜',g:'夜',img:'assets/images/cast/chenzhiye.png',s:'quiet',cc:'c-ye',r:'陈知白的亲哥哥，二十岁，比弟弟大三岁。第七章正式登场',p:'偏瘦，骨架比弟弟宽厚；头发完全露出双眼，眼下有淡淡的疲惫，神情温柔隐忍。旧纯色衬衫，深色休闲外套，不穿球衣，也不穿球鞋。他有自己的生活，一间修表工作室，和自己的人格。',q:'我不是替你。我选我自己要的。',w:'知白，你看见的，和别人不一样。',hl:['你踢你的。我看得见。','你忘了没关系。我记得。','你往亮的地方踢。','夜，我见过。你别来。'],t:'按住下方的圆，听他把话说完。',hd:'你往亮的地方踢。'}
-    ];
+      {k:'ye',n:'陈知夜',g:'夜',img:'assets/images/cast/chenzhiye.png',s:'quiet',cc:'c-ye',r:'陈知白的亲哥哥，二十岁，比弟弟大三岁。第七章正式登场',p:'偏瘦，骨架比弟弟宽厚；头发完全露出双眼，眼下有淡淡的疲惫，神情温柔隐忍。旧纯色衬衫，深色休闲外套，不穿球衣，也不穿球鞋。他有自己的生活，一间修表工作室，和自己的人格。',q:'我不是替你。我选我自己要的。',w:'知白，你看见的，和别人不一样。',hl:['你踢你的。我看得见。','你忘了没关系。我记得。','你往亮的地方踢。'],easter:'夜，我见过。你别来。',t:'点击圆形按钮，聆听一段隐藏独白。'},
+      {k:'faris',n:'Faris 法里斯',g:'F',img:'assets/images/cast/faris.png',s:'band',cc:'c-faris',r:'十七岁，马来裔，主队队长，深蓝 10 号',p:'左臂戴着队长袖标，体态结实匀称，浓眉，眼神直率，下颌清晰。他想带队赢下校际赛，证明普通人的努力同样有价值；他相信解释与沟通才是尊重，所以起初，他看不懂这个什么都不说的队友。',q:'你至少解释一次。你看得见，为什么不告诉我们？',w:'影子！快一点，训练要开始了！',hl:['影子！快一点，训练要开始了！','你至少解释一次。你看得见，为什么不告诉我们？','天狼！快一点，训练要开始了！'],t:'点击任意位置，听他喊一声。',cl:['影子！快一点，训练要开始了！','你至少解释一次。你看得见，为什么不告诉我们？','天狼！快一点，训练要开始了！']},
+      {k:'rizal',n:'Rizal 里扎尔',g:'R',img:'assets/images/cast/rizal.png',s:'skew',cc:'c-rizal',r:'十八岁，马来裔，客队 10 号，浅红球衣',p:'街头足球出身，重心低，脚步灵活，眼神锐利得难以预测，嘴角带着自信的浅笑。他的动作不遵循任何战术跑位，不靠推演，只靠身体本能踢球。他不是反派，只是从不看线。',q:'你的线，画不到我。',w:'你看线。我只看球门。',hl:['你看线。我只看球门。','你的线，画不到我。'],t:'移动鼠标：每一条线，都停在他面前。'}];
     D.forEach(d=>{d.q+='<cite>——'+d.n.split(' ')[0]+'</cite>'});
     const N=D.length,S=360/N;
     const IMG=(src,g)=>`<img src="${src}" alt="" onerror="this.parentNode.classList.add('noimg');this.remove()">`;
-    /* 首页线条 */
     const gB=$('#br'),NS='http://www.w3.org/2000/svg';
     for(let i=0;i<11;i++){const a=(-72+i*8)*Math.PI/180,L=520+((i*137)%9)*35,k=(i%2?1:-1)*(30+i*4),ex=140+Math.cos(a)*L,ey=520+Math.sin(a)*L,cx=140+Math.cos(a)*L*.5-Math.sin(a)*k,cy=520+Math.sin(a)*L*.5+Math.cos(a)*k,p=document.createElementNS(NS,'path');p.setAttribute('d',`M140 520Q${cx|0} ${cy|0} ${ex|0} ${ey|0}`);p.setAttribute('class','br'+(i==7?' hi':''));if(i!=7)p.style.setProperty('--d',i*.1+'s');gB.appendChild(p)}
-    /* 3D 人物环 */
     const ring=$('#ring'),items=[],ls=[];let rot=0,sp=.18,tgt=null,pu=0,mx=.5,inS=false,hv=-1,R=340,vis=true,cur=-1,tm,ti,arm=-1,offs=[];
     D.forEach((d,i)=>{const e=document.createElement('div');e.className='c3';e.dataset.t=d.k;
       e.innerHTML=`<div class="bub"></div><button class="in" aria-label="走进${d.n}的世界"><span class="mw" data-g="${d.g}"><img class="mdl" src="${d.img}" alt="" onerror="this.closest('.c3').classList.add('noimg');this.remove()"></span><span class="cn">${d.n}</span></button>`;
@@ -277,8 +272,7 @@
               pick=()=>{let j;do{j=Math.random()*d.hl.length|0}while(j==ls[i]&&d.hl.length>1);ls[i]=j;return d.hl[j]},
               on=()=>{if(hv==i)return;if(hv>=0)offs[hv]();hv=i;e.classList.add('hv');ring.classList.add('hov');say(pick());clearTimeout(t2);t2=setTimeout(()=>say(pick()),3200);document.body.dataset.t=d.k},
               off=()=>{if(hv!=i)return;hv=-1;clearTimeout(t2);clearInterval(tt);e.classList.remove('hv');ring.classList.remove('hov');b.style.removeProperty('--rx');b.style.removeProperty('--ry');document.body.dataset.t='base'};offs[i]=off;
-      e.addEventListener('pointerenter',on);e.addEventListener('pointerleave',off);
-      b.addEventListener('focus',on);b.addEventListener('blur',off);
+      e.addEventListener('pointerenter',on);e.addEventListener('pointerleave',off);b.addEventListener('focus',on);b.addEventListener('blur',off);
       b.addEventListener('pointermove',ev=>{const r=b.getBoundingClientRect();b.style.setProperty('--ry',((ev.clientX-r.left)/r.width-.5)*22+'deg');b.style.setProperty('--rx',(.5-(ev.clientY-r.top)/r.height)*18+'deg')});
       b.addEventListener('pointerdown',ev=>{pt=ev.pointerType});
       b.addEventListener('click',ev=>{if(pt=='touch'&&ev.detail&&arm!=i){arm=i;on();clearTimeout(t3);t3=setTimeout(()=>{arm=-1;off()},4500);return}arm=-1;clearTimeout(t3);open(i)});ring.append(e);items.push(e)});
@@ -288,30 +282,51 @@
     new IntersectionObserver(es=>vis=es[es.length-1].isIntersecting).observe(st);
     (function f(){if(vis&&cur<0){if(tgt!==null){rot+=(tgt-rot)*.14;if(Math.abs(tgt-rot)<.15){rot=tgt;tgt=null;sp=0;pu=performance.now()+3500}}else if(!rm&&performance.now()>pu){const w=hv>=0?0:(inS?(mx-.5)*1.5+.18:.18);sp+=(w-sp)*.06;rot+=sp}place()}requestAnimationFrame(f)})();
     const kick=d=>{if(rm){rot=Math.round(rot/S)*S-d*S;return}const b=tgt!==null?tgt:Math.round(rot/S)*S;tgt=b-d*S};$('#pv').onclick=()=>kick(-1);$('#nx').onclick=()=>kick(1);
-    /* 欢迎 → 角色简介 */
-    const wel=$('#wel'),wt=$('#wt'),prof=$('#prof'),xs=$('#xs'),fx=$('#fx'),NODES=[[.12,.2],[.3,.78],[.52,.12],[.7,.7],[.88,.3],[.62,.9]];
-    function go(){clearTimeout(tm);clearInterval(ti);const d=D[cur];if(!d)return;prof.classList.remove('hl');rot=-cur*S;tgt=null;sp=0;$('#sw-l').title=D[(cur+N-1)%N].n;$('#sw-r').title=D[(cur+1)%N].n;
-      $('#pn').textContent=d.n;$('#pr').textContent=d.r;$('#pp').textContent=d.p;$('#pt').textContent=d.t;
+    const wel=$('#wel'),wt=$('#wt'),prof=$('#prof'),xs=$('#xs'),fx=$('#fx'),NODES=[[.12,.2],[.3,.78],[.52,.12],[.7,.7],[.88,.3],[.62,.9],[.2,.5]];
+    const modalTextWrap=$('#pp'),easterWrap=$('#easterWrap'),easterBtn=$('#easterBtn'),easterHint=$('#easterHint');
+    let easterActive=false;
+    function go(){clearTimeout(tm);clearInterval(ti);const d=D[cur];if(!d)return;
+      prof.classList.remove('hl');rot=-cur*S;tgt=null;sp=0;
+      $('#sw-l').title=D[(cur+N-1)%N].n;$('#sw-r').title=D[(cur+1)%N].n;
+      $('#pn').textContent=d.n;$('#pr').textContent=d.r;modalTextWrap.textContent=d.p;
+      easterActive=false;
+      easterBtn.classList.remove('active');
+      if(d.k==='ye'){
+        easterWrap.style.display="block";
+      }else{
+        easterWrap.style.display="none";
+      }
+      $('#pt').textContent=d.t;
       const q=$('#pq');q.className='card '+d.cc;q.innerHTML=d.q;
       $('#pf').dataset.s=d.s;$('#pph').className='ph';$('#pph').dataset.g=d.g;$('#pph').innerHTML=IMG(d.img);
       const s=$('#ps');s.className='st';s.dataset.p='角色剧照｜放入 assets/images/stills/'+d.k+'.jpg';s.innerHTML=`<img src="assets/images/stills/${d.k}.jpg" alt="${d.n}剧照" onerror="this.parentNode.classList.add('e');this.remove()">`;
-      prof.dataset.t=d.k;xs.innerHTML=(d.k=='bai'||d.k=='rizal')?NODES.map(()=>'<line />').join(''):'';if(d.k=='bai')lines(innerWidth/2,innerHeight/2);if(d.k=='rizal')miss(innerWidth/2,innerHeight/2);$('#hold').textContent='按住';
-      prof.scrollTop=0;prof.classList.add('on');wel.classList.remove('on');setTimeout(()=>$('#cls').focus(),300)}
+      prof.dataset.t=d.k;
+      xs.innerHTML=(d.k=='bai'||d.k=='rizal')?NODES.map(()=>'<line />').join(''):'';
+      if(d.k=='bai')lines(innerWidth/2,innerHeight/2);
+      if(d.k=='rizal')miss(innerWidth/2,innerHeight/2);
+      prof.scrollTop=0;prof.classList.add('on');wel.classList.remove('on');
+      setTimeout(()=>$('#cls').focus(),300)}
+    easterBtn.onclick=()=>{
+      const d=D[cur];
+      if(!d||d.k!=='ye')return;
+      easterActive=!easterActive;
+      easterBtn.classList.toggle('active',easterActive);
+      modalTextWrap.style.opacity='0';
+      setTimeout(()=>{
+        modalTextWrap.textContent= easterActive ? d.easter : d.p;
+        modalTextWrap.style.opacity='1';
+      },380);
+    };
     function open(i){cur=i;const d=D[i];wel.dataset.t=d.k;wt.textContent='';wel.classList.add('on');document.body.style.overflow='hidden';$$('header,main,footer').forEach(x=>x.setAttribute('inert',''));let n=0;clearInterval(ti);ti=setInterval(()=>{wt.textContent=d.w.slice(0,++n);if(n>=d.w.length)clearInterval(ti)},rm?0:70);tm=setTimeout(go,rm?400:d.w.length*70+900)}
     function close(){clearTimeout(tm);clearInterval(ti);prof.classList.remove('on','hl');pu=performance.now()+3500;wel.classList.remove('on');document.body.style.overflow='';$$('header,main,footer').forEach(x=>x.removeAttribute('inert'));cur=-1}
     wel.onclick=go;$('#cls').onclick=close;$('#sw-l').onclick=()=>open((cur+N-1)%N);$('#sw-r').onclick=()=>open((cur+1)%N);
     addEventListener('keydown',e=>{if(e.key=='Escape'&&cur>=0){close();return}if(e.key!='ArrowLeft'&&e.key!='ArrowRight'||e.target.tagName=='VIDEO')return;const d=e.key=='ArrowRight'?1:-1;if(cur>=0){if(!wel.classList.contains('on'))open((cur+d+N)%N)}else if(vis)kick(d)});
-    /* 专属体验 */
     const lines=(x,y)=>{let best=0,bd=1e9;NODES.forEach((n,i)=>{const dx=n[0]*innerWidth-x,dy=n[1]*innerHeight-y,dd=dx*dx+dy*dy;if(dd<bd){bd=dd;best=i}});[...xs.children].forEach((l,i)=>{l.setAttribute('x1',x);l.setAttribute('y1',y);l.setAttribute('x2',NODES[i][0]*innerWidth);l.setAttribute('y2',NODES[i][1]*innerHeight);l.setAttribute('class',i==best?'hi':'')})};
     const miss=(x,y)=>[...xs.children].forEach((l,i)=>{const nx=NODES[i][0]*innerWidth,ny=NODES[i][1]*innerHeight,dx=x-nx,dy=y-ny,k=Math.max(0,1-110/(Math.hypot(dx,dy)||1));l.setAttribute('x1',nx);l.setAttribute('y1',ny);l.setAttribute('x2',nx+dx*k);l.setAttribute('y2',ny+dy*k);l.setAttribute('class','')});
     prof.addEventListener('pointermove',e=>{if(cur<0)return;const k=D[cur].k;if(k=='nian'){prof.style.setProperty('--mx',e.clientX+'px');prof.style.setProperty('--my',e.clientY+'px')}if(k=='bai')lines(e.clientX,e.clientY);if(k=='rizal')miss(e.clientX,e.clientY)});
     prof.addEventListener('click',e=>{if(cur<0||e.target.closest('button,a'))return;const k=D[cur].k;
       if(k=='nian'){const f=document.createElement('i');f.className='fl';fx.append(f);setTimeout(()=>f.remove(),600)}
       if(D[cur].cl){const r=document.createElement('i');r.className='rp';r.style.left=e.clientX+'px';r.style.top=e.clientY+'px';const t=document.createElement('span');t.className='rt';t.style.left=e.clientX+18+'px';t.style.top=e.clientY-12+'px';t.textContent=D[cur].cl[Math.random()*D[cur].cl.length|0];fx.append(r,t);setTimeout(()=>{r.remove();t.remove()},1700)}});
-    const hd=$('#hold'),hon=()=>{if(cur<0)return;prof.classList.add('hl');$('#pt').textContent=D[cur].hd||''},hoff=()=>{prof.classList.remove('hl');if(cur>=0)$('#pt').textContent=D[cur].t};
-    hd.addEventListener('pointerdown',hon);['pointerup','pointerleave','pointercancel','blur'].forEach(t=>hd.addEventListener(t,hoff));
-    hd.addEventListener('keydown',e=>{if(e.key==' '||e.key=='Enter')hon()});hd.addEventListener('keyup',hoff);
-    /* 全站：光晕跟随、进度、导航与主题 */
     addEventListener('pointermove',e=>{document.body.style.setProperty('--gx',e.clientX+'px');document.body.style.setProperty('--gy',e.clientY+'px')},{passive:true});
     const links=$$('nav a'),bar=$('#bar'),h=document.documentElement;
     const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;if(hv<0)document.body.dataset.t=e.target.dataset.t;links.forEach(a=>a.classList.toggle('on',a.dataset.n===e.target.dataset.n))}),{rootMargin:'-50% 0px -50% 0px'});
