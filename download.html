@@ -1,150 +1,312 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>沉默之狼｜素材下载与使用规范</title>
-    <meta name="theme-color" content="#121a22">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <meta property="og:site_name" content="沉默之狼 The Silent Wolf">
-    <meta property="og:locale" content="zh_CN">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="沉默之狼｜素材下载与使用规范">
-    <meta property="og:description" content="《沉默之狼 The Silent Wolf》官方素材下载页，包含项目档案、预告物料、角色美术、宣传海报及使用许可规范。">
-    <meta property="og:image" content="preview.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="description" content="《沉默之狼 The Silent Wolf》官方素材下载页，包含项目档案、预告物料、角色美术、宣传海报及使用许可规范。">
-    <style>
-        @property --t {syntax:'<color>';inherits:true;initial-value:#64a8d8}
-        :root {--bg:#121a22;--tx:#eef2f5;--mu:#93a5b1;--nav:60px}
-        * {box-sizing:border-box;margin:0;padding:0}
-        html {scroll-behavior:smooth;scroll-padding-top:var(--nav);scrollbar-gutter:stable}
-        body {--t:#64a8d8;background:var(--bg);color:var(--tx);font:17px/2 "Noto Serif SC","Source Han Serif SC","Songti SC",STSong,SimSun,serif;overflow-x:hidden}
-        .wash {position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle 420px at var(--gx,70%) var(--gy,25%),color‑mix(in srgb,var(--t) 16%,transparent),transparent 70%),radial‑gradient(50% 40% at 8% 92%,color‑mix(in srgb,var(--t) 10%,transparent),transparent 70%)}
-        button,a:focus‑visible,button:focus‑visible {outline:2px solid var(--t);outline‑offset:3px}
-        header {position:fixed;inset:0 0 auto 0;height:var(--nav);z‑index:50;display:flex;align‑items:center;justify‑content:space‑between;gap:1rem;padding:0 4vw;background:linear‑gradient(#121a22e6,#121a2200)}
-        .brand {display:flex;align‑items:center;gap:.7rem;color:var(--tx);text‑decoration:none;letter‑spacing:.3em;font‑weight:700;white‑space:nowrap}
-        .brand img {height:30px;width:auto}
-        nav {display:flex;gap:1.6rem;overflow‑x:auto;scrollbar‑width:none}
-        nav a {color:var(--mu);text‑decoration:none;font‑size:.9rem;white‑space:nowrap;border‑bottom:1px solid transparent;transition:color .3s}
-        nav a.on {color:var(--tx);border‑color:var(--t)}
-        main {padding‑top:calc(var(--nav) + 10vh);padding‑bottom:14vh;padding‑left:6vw;padding‑right:6vw;max‑width:92rem;margin:0 auto}
-        h1 {font‑size:clamp(2.2rem,6vw,4rem);letter‑spacing:.18em;font‑weight:900;margin‑bottom:.6em}
-        h2 {font‑size:clamp(1.4rem,3vw,2rem);letter‑spacing:.12em;margin‑top:3.2em;margin‑bottom:1em;color:var(--t)}
-        p {color:#d4dde3;line‑height:1.85;margin‑bottom:1.2em;text‑align:justify}
-        ul {color:#cfd9df;line‑height:1.8;margin‑left:1.4em;margin‑bottom:1.4em}
-        li {margin‑bottom:.6em}
-        .dl‑grid {display:grid;grid‑template‑columns:repeat(auto‑fit,minmax(280px,1fr));gap:2rem;margin‑top:2rem}
-        .dl‑card {border:1px solid #ffffff22;padding:1.8rem 1.6rem;border‑radius:8px;background:#172029}
-        .dl‑card h3 {font‑size:1rem;letter‑spacing:.12em;margin‑bottom:.8em;color:var(--tx)}
-        .dl‑card .desc {font‑size:.92rem;color:var(--mu);margin‑bottom:1.2em}
-        .dl‑btn {display:inline‑block;padding:.7rem 1.4rem;background:color‑mix(in srgb,var(--t) 22%,#121a22);color:var(--tx);text‑decoration:none;border‑radius:6px;border:1px solid var(--t);transition:background .25s}
-        .dl‑btn:hover {background:color‑mix(in srgb,var(--t) 38%,#121a22)}
-        .note‑box {margin‑top:4rem;padding:1.6rem;border‑left:4px solid var(--t);background:#141c24}
-        footer {padding:6vh 6vw;color:var(--mu);font‑size:.85rem;border‑top:1px solid #ffffff18;margin‑top:8rem}
-        @media(max‑width:760px){
-            nav a {letter‑spacing:0}
-            .brand {letter‑spacing:.12em}
-            .dl‑grid {grid‑template‑columns:1fr}
-        }
-        @media(prefers‑reduced‑motion:reduce){*{animation:none!important;transition:none!important}}
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>素材下载与使用规范 | 沉默之狼 The Silent Wolf</title>
+<meta name="theme-color" content="#121a22">
+<meta name="description" content="《沉默之狼 The Silent Wolf》第一季《看见结构的人》官方素材下载页：项目总档案、预告脚本、主视觉海报、Logo 标识包，以及使用许可规范。">
+<link rel="icon" type="image/png" href="favicon.png">
+<!-- 上线后请补充：<link rel="canonical" href="https://你的域名/download.html"> 与 <meta property="og:url">，并把 og:image 改成完整网址（建议 1200×630） -->
+<meta property="og:site_name" content="沉默之狼 The Silent Wolf">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:type" content="website">
+<meta property="og:title" content="素材下载与使用规范｜沉默之狼 The Silent Wolf">
+<meta property="og:description" content="第一季《看见结构的人》官方物料：总档案、预告脚本、主视觉海报、Logo 标识包与使用许可。">
+<meta property="og:image" content="preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWorkSeries","name":"沉默之狼","alternateName":"The Silent Wolf","inLanguage":["zh","ms"],"genre":["校园足球","写实体育悬疑","少年成长"],"description":"以马来西亚华文独中校园足球为背景的写实体育悬疑。第一季《看见结构的人》。"}</script>
+<noscript><style>.rv{opacity:1!important;transform:none!important;filter:none!important}.seal,.blank{display:none}</style></noscript>
+<style>
+@property --t{syntax:'<color>';inherits:true;initial-value:#64a8d8}
+:root{--bg:#121a22;--tx:#eef2f5;--mu:#93a5b1;--nav:60px;--warm:0}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:var(--nav);scrollbar-gutter:stable}
+[data-t=base]{--c:color-mix(in srgb,#e3a15f calc(var(--warm)*100%),#64a8d8)}
+[data-t=docx]{--c:#64a8d8}[data-t=pdf]{--c:#e3a15f}[data-t=png]{--c:#a79bc4}[data-t=logo]{--c:#6f86e0}[data-t=zip]{--c:#a9b36a}[data-t=txt]{--c:#e0707a}
+body{--t:#64a8d8;background:color-mix(in srgb,#1b1610 calc(var(--warm)*50%),var(--bg));color:var(--tx);font:17px/2 "Noto Serif SC","Source Han Serif SC","Songti SC",STSong,SimSun,serif;transition:--t 1.2s;overflow-x:hidden}
+body[data-t]{--t:var(--c)}
+.wash{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle 420px at var(--gx,70%) var(--gy,25%),color-mix(in srgb,var(--t) 16%,transparent),transparent 70%),radial-gradient(50% 40% at 8% 92%,color-mix(in srgb,var(--t) 10%,transparent),transparent 70%)}
+button{font:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--t);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:8px;z-index:300;background:var(--tx);color:#0b1117;padding:.5rem 1rem;text-decoration:none}.skip:focus{left:8px}
+#bar{position:fixed;top:0;left:0;height:2px;width:100%;background:var(--t);transform-origin:0 50%;transform:scaleX(0);z-index:60}
+header{position:fixed;inset:0 0 auto 0;height:var(--nav);z-index:50;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0 4vw;background:linear-gradient(#121a22e6,#121a2200)}
+.brand{display:flex;align-items:center;gap:.7rem;color:var(--tx);text-decoration:none;letter-spacing:.3em;font-weight:700;white-space:nowrap}
+.brand img{height:30px;width:auto}
+nav{display:flex;gap:1.6rem;overflow-x:auto;scrollbar-width:none}
+nav a{color:var(--mu);text-decoration:none;font-size:.9rem;white-space:nowrap;border-bottom:1px solid transparent;transition:color .3s}
+nav a:hover{color:var(--tx)}nav a.on{color:var(--tx);border-color:var(--t)}
+.snd{background:none;border:1px solid #ffffff44;color:var(--mu);border-radius:20px;padding:.2rem .8rem;font-size:.8rem;letter-spacing:.2em;cursor:pointer;white-space:nowrap;transition:.3s}
+.snd[aria-pressed=true]{color:var(--tx);border-color:var(--t)}
+/* 开场、颗粒、光标（与首页一致） */
+#intro{position:fixed;inset:0;z-index:200;background:#05080b;display:grid;place-items:center;cursor:pointer;animation:introOut .9s 2.7s forwards}
+#intro div{text-align:center}
+#intro b{display:block;font-size:clamp(2.6rem,9vw,6rem);letter-spacing:.5em;font-weight:900;padding-left:.5em;animation:introIn 1.8s ease-out both}
+#intro small{display:block;margin-top:1.2rem;font:600 .7rem/1 Arial,sans-serif;letter-spacing:.7em;color:var(--mu);animation:introIn 2.2s .4s ease-out both}
+@keyframes introIn{from{opacity:0;letter-spacing:.9em;filter:blur(8px)}to{opacity:1}}
+@keyframes introOut{to{opacity:0;visibility:hidden;pointer-events:none}}
+.nointro #intro{display:none}
+.grain{position:fixed;inset:-50%;z-index:120;pointer-events:none;opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");animation:gr 1s steps(5) infinite}
+@keyframes gr{20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-2%)}80%{transform:translate(3%,3%)}}
+#cu{display:none;position:fixed;left:-15px;top:-15px;width:30px;height:30px;border:1px solid color-mix(in srgb,var(--t) 80%,#fff);border-radius:50%;z-index:130;pointer-events:none;opacity:0;transition:opacity .4s,width .3s,height .3s,margin .3s,background .3s;place-items:center;font:600 .68rem/1 Arial,sans-serif;letter-spacing:.15em;color:var(--tx)}
+#cu.on{opacity:.9}#cu.h{width:54px;height:54px;margin:-12px 0 0 -12px;background:color-mix(in srgb,var(--t) 14%,transparent)}
+#cu[data-l]:not([data-l=""]){width:76px;height:76px;margin:-23px 0 0 -23px;display:grid}
+#cu::after{content:attr(data-l)}
+@media(hover:hover) and (pointer:fine){#cu{display:block}}
+.rv{opacity:0;transform:translateY(22px);filter:blur(5px);transition:opacity 1s,transform 1s,filter 1s;transition-delay:calc(var(--i,0)*.12s)}
+.rv.in{opacity:1;transform:none;filter:none}
+/* 页首：胶片横移 */
+.dh{position:relative;max-width:1180px;margin:0 auto;padding:calc(var(--nav) + 14vh) 6vw 9vh}
+.reel{position:absolute;left:0;right:0;height:30px;background:repeating-linear-gradient(90deg,#222c35 0 12px,transparent 12px 28px) 0 50%/100% 10px repeat-x,#0d1319;animation:reel 14s linear infinite}
+.reel.a{top:calc(var(--nav) + 3vh)}.reel.b{bottom:2vh;animation-direction:reverse}
+@keyframes reel{to{background-position:280px 50%,0 0}}
+.eb{font:600 .72rem/1 Arial,sans-serif;letter-spacing:.7em;color:var(--t);margin-bottom:1.6rem;transition:color 1.2s}
+.dh h1{font-size:clamp(2.4rem,7vw,5rem);letter-spacing:.14em;line-height:1.25;font-weight:900;margin-bottom:.5em}
+.lead{max-width:34em;color:#d4dde3;letter-spacing:.04em}
+.stats{display:flex;flex-wrap:wrap;gap:3rem;margin-top:3.4rem}
+.stats div{min-width:7rem;padding-top:.8rem;border-top:1px solid var(--t);transition:border-color 1.2s}
+.stats b{display:block;font-size:2.2rem;line-height:1.2;font-weight:900}
+.stats span{color:var(--mu);font-size:.85rem;letter-spacing:.2em}
+.ah{display:flex;align-items:center;gap:1.4rem;max-width:1180px;margin:0 auto 7vh}
+.ah h2{font-size:.95rem;font-weight:600;letter-spacing:.7em;color:var(--t);white-space:nowrap;transition:color 1.2s}
+.ah i{flex:1;height:1px;background:linear-gradient(90deg,color-mix(in srgb,var(--t) 70%,transparent),#ffffff1f)}
+.ah span{font:600 .68rem/1 Arial,sans-serif;letter-spacing:.5em;color:var(--mu)}
+section.blk{padding:8vh 6vw}
+/* 印样：六格底片 */
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2.6rem 1.8rem;max-width:1180px;margin:0 auto}
+.fr{position:relative;background:#0d1319;padding:46px 16px 40px;transition:transform .5s,box-shadow .5s}
+.fr::before,.fr::after{content:"";position:absolute;left:0;right:0;height:10px;background:repeating-linear-gradient(90deg,#222c35 0 12px,transparent 12px 28px)}
+.fr::before{top:10px}.fr::after{bottom:10px}
+.fr:hover,.fr:focus-within{transform:translateY(-8px);box-shadow:0 26px 60px -26px var(--c)}
+.ec{position:absolute;left:18px;top:25px;font:600 .58rem/1 Arial,sans-serif;letter-spacing:.35em;color:#c98f4f}
+.pic{position:relative;aspect-ratio:16/10;overflow:hidden;background:linear-gradient(160deg,color-mix(in srgb,var(--c) 26%,#0d1319),#0d1319 85%);filter:brightness(.55) grayscale(.9) contrast(1.15);transition:filter .9s}
+.fr:hover .pic,.fr:focus-within .pic,.fr.got .pic{filter:none}
+.pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pic img.lg{object-fit:contain;padding:14%}
+.ext{position:absolute;left:14px;bottom:6px;font:900 clamp(2.6rem,6vw,3.6rem)/1 Arial,sans-serif;letter-spacing:.04em;color:transparent;-webkit-text-stroke:1px var(--c)}
+.fr h3{font-size:1.05rem;letter-spacing:.16em;margin:1.3rem 0 .3rem}
+.desc{font-size:.9rem;line-height:1.85;color:var(--mu);min-height:5.6em}
+.meta{margin:.7rem 0 1rem;min-height:1.6em;font:600 .72rem/1.6 Arial,sans-serif;letter-spacing:.14em;color:var(--c)}
+.dl-btn{display:inline-block;padding:.65rem 1.5rem;border:1px solid var(--c);color:var(--tx);text-decoration:none;letter-spacing:.3em;font-size:.82rem;background:color-mix(in srgb,var(--c) 14%,transparent);transition:background .3s}
+.dl-btn:hover{background:color-mix(in srgb,var(--c) 34%,transparent)}
+.dl-btn[aria-disabled=true]{pointer-events:none;opacity:.38;filter:grayscale(1)}
+.fr.miss .pic{filter:brightness(.3) grayscale(1)}
+.seal{position:absolute;left:-12px;right:-12px;top:34%;height:44px;z-index:5;border:0;cursor:pointer;background:repeating-linear-gradient(135deg,#e0707a 0 14px,#b9505a 14px 28px);color:#fff;font:700 .74rem/1 Arial,sans-serif;letter-spacing:.35em;transform:rotate(-4deg);box-shadow:0 8px 20px #000a;transition:transform .4s}
+.seal:hover{transform:rotate(-4deg) scale(1.03)}
+.seal.torn{animation:tear .65s forwards}
+@keyframes tear{30%{transform:rotate(-14deg) translateY(-8px)}100%{transform:rotate(32deg) translate(140px,90px);opacity:0}}
+.fr.sealed .pic{filter:brightness(.28) grayscale(1) blur(3px)}
+.blank{display:block;width:100%;max-width:1180px;margin:2.6rem auto 0;padding:1.4rem;border:0;color:var(--mu);cursor:pointer;background:#0d1319;position:relative;text-align:center;font:600 .72rem/1.6 Arial,sans-serif;letter-spacing:.6em;overflow:hidden}
+.blank b{display:block;font-size:1rem;letter-spacing:.8em;color:#586774;margin-top:.3rem;font-weight:600}
+.blank::before{content:"";position:absolute;inset:0;opacity:.05;background:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px)}
+.blank.sh{animation:shk .5s}
+@keyframes shk{20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+/* 使用许可：审片通过证 */
+.chips{display:flex;flex-wrap:wrap;gap:.7rem;max-width:1180px;margin:0 auto}
+.chip{padding:.5rem 1.1rem;background:transparent;border:1px solid #ffffff33;color:var(--tx);font-size:.88rem;letter-spacing:.12em;cursor:pointer;transition:.3s}
+.chip:hover{border-color:var(--t)}.chip[aria-pressed=true]{background:color-mix(in srgb,var(--t) 22%,transparent);border-color:var(--t)}
+.vd{display:flex;align-items:center;gap:3rem;flex-wrap:wrap;max-width:1180px;margin:4rem auto 0;min-height:150px}
+.stamp{width:min(240px,60vw);aspect-ratio:1.9;display:grid;place-content:center;text-align:center;border:3px solid var(--sc,#586774);outline:1px solid var(--sc,#586774);outline-offset:4px;border-radius:6px;color:var(--sc,#586774);transform:rotate(-6deg);font-family:Arial,"Noto Serif SC",sans-serif}
+.stamp b{font-size:1.7rem;letter-spacing:.3em;padding-left:.3em}.stamp small{font-size:.74rem;letter-spacing:.5em}
+.stamp.ok{--sc:#e3a15f;animation:slam .5s}.stamp.no{--sc:#e0707a;animation:slam .5s}.stamp.ask{--sc:#a79bc4;animation:slam .5s}
+@keyframes slam{0%{transform:scale(2.4) rotate(-14deg);opacity:0}60%{transform:scale(.92) rotate(-6deg);opacity:1}100%{transform:scale(1) rotate(-6deg)}}
+#vn{flex:1;min-width:220px;color:#d4dde3;letter-spacing:.06em}
+.terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:3rem;max-width:1180px;margin:7vh auto 0}
+.terms h3{padding-bottom:1rem;margin-bottom:1.2rem;border-bottom:1px solid #ffffff1f;font-size:1rem;letter-spacing:.3em}
+.terms h3 i{margin-left:1rem;font:600 .65rem/1 Arial,sans-serif;letter-spacing:.4em;color:var(--mu)}
+.terms .tp h3{color:#e3a15f}.terms .tx h3{color:#e0707a}.terms .ta h3{color:#a79bc4}
+.terms li{margin:0 0 .6rem 1.2rem;color:#cfd9df;font-size:.95rem;line-height:1.9}
+.terms p{color:#cfd9df;font-size:.95rem}
+.cp{display:block;margin:6vh auto 0;max-width:1180px;width:100%;text-align:left}
+.cpb{padding:.8rem 1.8rem;background:transparent;border:1px solid color-mix(in srgb,var(--t) 70%,transparent);color:var(--tx);letter-spacing:.3em;font-size:.82rem;cursor:pointer;transition:background .3s}
+.cpb:hover{background:color-mix(in srgb,var(--t) 18%,transparent)}
+.cp small{margin-left:1.2rem;color:var(--mu);font-size:.82rem;letter-spacing:.08em}
+/* 封底 */
+.endc{padding:20vh 6vw 12vh;text-align:center}
+.e1{font:600 .75rem/1 Arial,sans-serif;letter-spacing:.9em;color:var(--mu);padding-left:.9em}
+.e2{margin:1.4rem 0;font-size:clamp(2.4rem,8vw,5rem);letter-spacing:.5em;font-weight:900;padding-left:.5em}
+.e3{color:var(--mu);letter-spacing:.3em;font-size:.9rem}
+footer{padding:6vh 6vw;color:var(--mu);font-size:.85rem;border-top:1px solid #ffffff18}
+#toast{position:fixed;left:50%;bottom:6vh;transform:translate(-50%,20px);z-index:140;max-width:88vw;padding:.7rem 1.4rem;background:#eef2f5;color:#1a232b;font-size:.88rem;letter-spacing:.06em;opacity:0;pointer-events:none;transition:.4s}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+@media(max-width:820px){.brand{letter-spacing:.15em}.snd{padding:.2rem .6rem}.ah h2{letter-spacing:.45em}.ah span{display:none}.dh{padding-top:calc(var(--nav) + 12vh)}.vd{gap:2rem}.stats{gap:2rem}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none;filter:none}#intro,.grain,.reel{display:none}}
+@media print{header,#bar,#cu,#intro,.grain,.snd,.reel,#toast,.chips,.seal,.blank,.wash{display:none!important}body{background:#fff;color:#000}.terms li,.terms p,#vn,.lead,.desc{color:#000}.fr{border:1px solid #999;background:#fff}.ext{-webkit-text-stroke:1px #000}}
+</style>
 </head>
-<body>
-<div class="wash"></div>
+<body data-t="base">
+<script>try{if(sessionStorage.getItem('swi'))document.documentElement.classList.add('nointro')}catch(e){}</script>
+<a class="skip" href="#files">跳到物料列表</a>
+<div class="wash"></div><div id="bar"></div><div class="grain"></div><div id="cu" data-l=""></div>
+<div id="intro" aria-hidden="true"><div><b>沉默之狼</b><small>THE SILENT WOLF</small></div></div>
 <header>
-    <a class="brand" href="index.html"><img src="assets/images/logo.png" alt="" onerror="this.remove()">沉默之狼</a>
-    <nav>
-        <a href="index.html#story">故事</a>
-        <a href="index.html#trailer">预告</a>
-        <a href="index.html#cast">人物</a>
-        <a href="index.html#stills">剧照</a>
-        <a href="index.html#archive">档案</a>
-        <a href="download.html" class="on">下载</a>
-    </nav>
+  <a class="brand" href="index.html"><img src="assets/images/logo.png" alt="" onerror="this.remove()">沉默之狼</a>
+  <nav>
+    <a href="index.html#story">故事</a><a href="index.html#trailer">预告</a><a href="index.html#cast">人物</a><a href="index.html#stills">剧照</a><a href="index.html#archive">档案</a><a href="download.html" class="on" aria-current="page">下载</a>
+  </nav>
+  <button class="snd" id="snd" aria-pressed="false" title="开启环境雨声">雨声</button>
 </header>
 
 <main>
-    <h1>素材下载与使用规范</h1>
-    <p>本页面提供《沉默之狼 The Silent Wolf》第一卷《看见结构的人》全套公开物料下载，包含项目总档案文档、宣传海报、角色美术、预告配套素材。所有素材受版权保护，请严格遵守下方使用许可条款。</p>
-
-    <h2>可下载物料列表</h2>
-    <div class="dl‑grid">
-        <div class="dl‑card">
-            <h3>项目总档案（Word）</h3>
-            <div class="desc">院线级最终完整版总档案文档，包含世界观、人物、分季设定、分镜、台词库、配音表演指导、全部硬性校验铁则。</div>
-            <a class="dl‑btn" href="./files/沉默之狼_院线级最终完整版总档案.docx" download>下载 DOCX</a>
-        </div>
-
-        <div class="dl‑card">
-            <h3>30秒预告脚本（PDF）</h3>
-            <div class="desc">30秒院线预告完整分镜脚本、SRT字幕、音频混音参数、镜头时序校验文档。</div>
-            <a class="dl‑btn" href="./files/沉默之狼_30秒预告脚本.pdf" download>下载 PDF</a>
-        </div>
-
-        <div class="dl‑card">
-            <h3>主视觉海报 PNG</h3>
-            <div class="desc">冷墨白线版主海报 1920×1080 / 2K 版本，用于宣传、演示、演示项目页面。</div>
-            <a class="dl‑btn" href="./files/poster_2k.png" download>下载海报</a>
-        </div>
-
-        <div class="dl‑card">
-            <h3>Logo 标识包</h3>
-            <div class="desc">冷墨白线版片名Logo，透明底PNG，含横版、竖版变体。</div>
-            <a class="dl‑btn" href="./files/silent_wolf_logo.zip" download>下载 ZIP</a>
-        </div>
-
-        <div class="dl‑card">
-            <h3>网站静态源码包</h3>
-            <div class="desc">官网 index.html + download.html 完整源码，含目录说明文档。</div>
-            <a class="dl‑btn" href="./files/silent_wolf_website_source.zip" download>下载源码</a>
-        </div>
-
-        <div class="dl‑card">
-            <h3>金句与台词摘录（TXT）</h3>
-            <div class="desc">全片核心金句、角色经典台词纯文本，便于二次参考查阅。</div>
-            <a class="dl‑btn" href="./files/台词金句摘录.txt" download>下载 TXT</a>
-        </div>
+  <section class="dh" data-t="base">
+    <div class="reel a" aria-hidden="true"></div><div class="reel b" aria-hidden="true"></div>
+    <p class="eb rv">THE DARKROOM　素材室</p>
+    <h1 class="rv" style="--i:1">素材下载<br>与使用规范</h1>
+    <p class="lead rv" style="--i:2">第一季《看见结构的人》官方物料。所有素材受版权保护——取走底片之前，请先看一眼下面的使用许可。</p>
+    <div class="stats rv" style="--i:3">
+      <div><b data-n="6">6</b><span>份物料</span></div>
+      <div><b data-n="5">5</b><span>种格式</span></div>
+      <div><b id="got">0</b><span>份已取出</span></div>
     </div>
+  </section>
 
-    <h2>目录参考（部署站点时）</h2>
-    <ul>
-        <li><code>index.html</code> —— 项目官网首页</li>
-        <li><code>download.html</code> —— 当前下载页面</li>
-        <li><code>favicon.png</code> —— 浏览器标签图标</li>
-        <li><code>preview.png</code> —— 社交分享缩略图</li>
-        <li><code>assets/</code>
-            <ul>
-                <li><code>assets/images/</code>：logo、海报、角色立绘cast、剧照stills</li>
-                <li><code>assets/videos/</code>：trailer.mp4 预告视频</li>
-            </ul>
-        </li>
-        <li><code>files/</code> —— 存放所有下载附件（docx / pdf / png / zip / txt）</li>
-    </ul>
-
-    <div class="note‑box">
-        <h2>使用许可与版权规范</h2>
-        <p>© 2026 《沉默之狼》｜The Silent Wolf</p>
-        <ul>
-            <li>✅ 允许：个人学习、剧本研读、项目演示、非盈利个人创作参考，引用时请标注项目名称《沉默之狼 The Silent Wolf》。</li>
-            <li>✅ 允许：学生作业、概念演示，不可用于商业变现。</li>
-            <li>❌ 禁止：直接将本故事、角色、设定用于商业影视、游戏、付费出版物、付费IP衍生产品。</li>
-            <li>❌ 禁止：篡改档案核心硬性铁则对外二次发布；禁止把内部档案代价名词作为宣传标题对外传播。</li>
-            <li>❌ 禁止：拆出角色单独注册商标、IP版权。</li>
-            <li>⚠️ 若需要商业合作授权，请另行联系。</li>
-        </ul>
-        <p>注意：本页面下载链接为占位href，部署时请将文件放入 <code>files/</code> 文件夹，链接路径与实际文件保持一致。本地直接打开HTML点击下载不会生效，需要HTTP服务环境。</p>
+  <section class="blk" id="files">
+    <div class="ah"><h2>可下载物料</h2><i></i><span>CONTACT SHEET</span></div>
+    <div class="fgrid">
+      <article class="fr rv" data-t="docx" data-cur="取出" data-seal="1">
+        <span class="ec">SW · S01 · 01</span>
+        <div class="pic"><b class="ext">DOCX</b></div>
+        <h3>项目总档案</h3>
+        <p class="desc">院线级最终完整版总档案：世界观、人物、分季设定、分镜、台词库、配音表演指导，以及全部硬性校验规范。含完整剧透。</p>
+        <div class="meta"><span class="st"></span></div>
+        <a class="dl-btn" href="./files/沉默之狼_院线级最终完整版总档案.docx" download>下载 DOCX</a>
+      </article>
+      <article class="fr rv" data-t="pdf" data-cur="取出" style="--i:1">
+        <span class="ec">SW · S01 · 02</span>
+        <div class="pic"><b class="ext">PDF</b></div>
+        <h3>30 秒预告脚本</h3>
+        <p class="desc">30 秒院线预告完整分镜脚本、SRT 字幕、音频混音参数、镜头时序校验文档。</p>
+        <div class="meta"><span class="st"></span></div>
+        <a class="dl-btn" href="./files/沉默之狼_30秒预告脚本.pdf" download>下载 PDF</a>
+      </article>
+      <article class="fr rv" data-t="png" data-cur="取出" style="--i:2">
+        <span class="ec">SW · S01 · 03</span>
+        <div class="pic"><img src="assets/images/poster.png" alt="" onerror="this.remove()"><b class="ext">PNG</b></div>
+        <h3>主视觉海报</h3>
+        <p class="desc">第一季主视觉海报，16:9，2K 版本，用于宣传、演示与项目页面。</p>
+        <div class="meta"><span class="st"></span></div>
+        <a class="dl-btn" href="./files/poster_2k.png" download>下载海报</a>
+      </article>
+      <article class="fr rv" data-t="logo" data-cur="取出">
+        <span class="ec">SW · S01 · 04</span>
+        <div class="pic"><img class="lg" src="assets/images/logo.png" alt="" onerror="this.remove()"><b class="ext">ZIP</b></div>
+        <h3>Logo 标识包</h3>
+        <p class="desc">冷墨白线版片名 Logo，透明底 PNG，含横版、竖版变体。</p>
+        <div class="meta"><span class="st"></span></div>
+        <a class="dl-btn" href="./files/silent_wolf_logo.zip" download>下载 ZIP</a>
+      </article>
+      <article class="fr rv" data-t="zip" data-cur="取出" style="--i:1">
+        <span class="ec">SW · S01 · 05</span>
+        <div class="pic"><b class="ext">ZIP</b></div>
+        <h3>网站静态源码包</h3>
+        <p class="desc">官网 index.html 与 download.html 完整源码，含目录说明文档。</p>
+        <div class="meta"><span class="st"></span></div>
+        <a class="dl-btn" href="./files/silent_wolf_website_source.zip" download>下载源码</a>
+      </article>
+      <article class="fr rv" data-t="txt" data-cur="取出" data-seal="1" style="--i:2">
+        <span class="ec">SW · S01 · 06</span>
+        <div class="pic"><b class="ext">TXT</b></div>
+        <h3>金句与台词摘录</h3>
+        <p class="desc">全片核心金句与角色经典台词纯文本，便于二次参考查阅。含后续章节台词，含剧透。</p>
+        <div class="meta"><span class="st"></span></div>
+        <a class="dl-btn" href="./files/台词金句摘录.txt" download>下载 TXT</a>
+      </article>
     </div>
+    <button class="blank rv" id="blank" data-cur="显影">SW · S01 · 07<b>未显影</b></button>
+  </section>
+
+  <section class="blk" id="license">
+    <div class="ah"><h2>使用许可</h2><i></i><span>CLEARANCE</span></div>
+    <p class="lead" style="margin:0 auto 3rem;max-width:1180px">选一种用途，盖章。</p>
+    <div class="chips" role="group" aria-label="选择你的使用用途">
+      <button class="chip" data-v="ok" data-n="允许。引用时请标注项目名称《沉默之狼 The Silent Wolf》。" data-cur="判定">个人学习与剧本研读</button>
+      <button class="chip" data-v="ok" data-n="允许，不可用于商业变现。引用时请标注项目名称。" data-cur="判定">项目演示与概念演示</button>
+      <button class="chip" data-v="ok" data-n="允许，不可用于商业变现。" data-cur="判定">学生作业</button>
+      <button class="chip" data-v="ok" data-n="允许。引用时请标注项目名称《沉默之狼 The Silent Wolf》。" data-cur="判定">非盈利个人创作参考</button>
+      <button class="chip" data-v="no" data-n="禁止直接将本故事、角色、设定用于商业影视。" data-cur="判定">商业影视</button>
+      <button class="chip" data-v="no" data-n="禁止直接将本故事、角色、设定用于游戏。" data-cur="判定">游戏</button>
+      <button class="chip" data-v="no" data-n="禁止直接将本故事、角色、设定用于付费出版物。" data-cur="判定">付费出版物</button>
+      <button class="chip" data-v="no" data-n="禁止直接将本故事、角色、设定用于付费 IP 衍生产品。" data-cur="判定">付费 IP 衍生产品</button>
+      <button class="chip" data-v="no" data-n="禁止拆出角色单独注册商标、IP 版权。" data-cur="判定">单独注册角色商标或版权</button>
+      <button class="chip" data-v="no" data-n="禁止篡改档案核心硬性规范后对外二次发布。" data-cur="判定">改动核心规范后二次发布</button>
+      <button class="chip" data-v="no" data-n="禁止把仅供内部使用的设定名称作为宣传标题对外传播。" data-cur="判定">内部设定名称做宣传标题</button>
+      <button class="chip" data-v="ask" data-n="需要另行联系，取得授权。" data-cur="判定">商业合作</button>
+    </div>
+    <div class="vd">
+      <div class="stamp" id="stamp"><b>待判定</b><small>SELECT USE</small></div>
+      <p id="vn" aria-live="polite">点一下上面的用途，看看是否被允许。</p>
+    </div>
+    <div class="terms">
+      <div class="tp"><h3>允许<i>PERMITTED</i></h3><ul>
+        <li>个人学习、剧本研读、项目演示、非盈利个人创作参考，引用时请标注项目名称《沉默之狼 The Silent Wolf》。</li>
+        <li>学生作业、概念演示，不可用于商业变现。</li></ul></div>
+      <div class="tx"><h3>禁止<i>PROHIBITED</i></h3><ul>
+        <li>直接将本故事、角色、设定用于商业影视、游戏、付费出版物、付费 IP 衍生产品。</li>
+        <li>篡改档案核心硬性规范后对外二次发布；把仅供内部使用的设定名称作为宣传标题对外传播。</li>
+        <li>拆出角色单独注册商标、IP 版权。</li></ul></div>
+      <div class="ta"><h3>需授权<i>CONTACT</i></h3><p>商业合作授权，请另行联系。</p><!-- 在这里填入你的联系邮箱或联系渠道 --></div>
+    </div>
+    <div class="cp"><button class="cpb" id="copy" data-cur="复制">复制署名文字</button><small>下载素材即视为同意以上使用许可。</small></div>
+  </section>
+
+  <section class="endc rv">
+    <p class="e1">THE SILENT WOLF</p>
+    <p class="e2">沉默之狼</p>
+    <p class="e3">眼睛会骗人。结构不会。</p>
+  </section>
 </main>
 
 <footer>© 2026 《沉默之狼》｜The Silent Wolf</footer>
+<div id="toast" role="status" aria-live="polite"></div>
 
+<!--
+  部署目录参考（仅供站长，不在页面显示）：
+  index.html、download.html、favicon.png、preview.png
+  assets/images/（logo.png、poster.png、cast/、stills/）、assets/videos/trailer.mp4
+  files/（所有下载附件：docx / pdf / png / zip / txt；文件名需与上面的 href 一致）
+  需通过 HTTP 服务访问（本地直接双击打开时，下载与文件检测可能不生效）。
+-->
 <script>
-    // 鼠标光晕跟随
-    document.addEventListener('pointermove',e=>{
-        document.body.style.setProperty('--gx',e.clientX+'px');
-        document.body.style.setProperty('--gy',e.clientY+'px');
-    },{passive:true});
+(()=>{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],rm=matchMedia('(prefers-reduced-motion:reduce)').matches,body=document.body,root=document.documentElement;
+/* ---------- 环境雨声与音效（与首页一致：默认关闭） ---------- */
+let ac,gn;const snd=$('#snd'),sOn=()=>snd.getAttribute('aria-pressed')=='true';
+const audio=()=>{if(!ac){try{ac=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}return ac};
+snd.onclick=()=>{const on=!sOn();snd.setAttribute('aria-pressed',on);const c=audio();if(!c)return;if(!gn){const b=c.createBuffer(1,c.sampleRate*2,c.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;const s=c.createBufferSource();s.buffer=b;s.loop=true;const f=c.createBiquadFilter();f.type='bandpass';f.frequency.value=1500;f.Q.value=.5;gn=c.createGain();gn.gain.value=0;s.connect(f);f.connect(gn);gn.connect(c.destination);s.start()}c.resume();gn.gain.linearRampToValueAtTime(on?.04:0,c.currentTime+1.4)};
+const sfx=t=>{if(!ac||!sOn())return;const c=ac,g=c.createGain();g.connect(c.destination);if(t=='shutter'||t=='tear'){const len=t=='tear'?.24:.07,b=c.createBuffer(1,c.sampleRate*len,c.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);const s=c.createBufferSource();s.buffer=b;g.gain.value=t=='tear'?.3:.25;s.connect(g);s.start()}else{const o=c.createOscillator();o.frequency.setValueAtTime(150,c.currentTime);o.frequency.exponentialRampToValueAtTime(50,c.currentTime+.35);g.gain.setValueAtTime(.2,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.4);o.connect(g);o.start();o.stop(c.currentTime+.4)}};
+let tt;const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2800)};
+/* ---------- 开场（与首页共用“已看过”标记） / 光标 / 揭示 ---------- */
+const intro=$('#intro');if(intro){const kill=()=>{try{sessionStorage.setItem('swi','1')}catch(e){}intro.remove()};intro.addEventListener('click',kill);intro.addEventListener('animationend',e=>{if(e.animationName=='introOut')kill()})}
+addEventListener('keydown',e=>{if(e.key=='Escape'){const i=$('#intro');if(i)i.click()}});
+const cu=$('#cu');if(cu&&matchMedia('(hover:hover) and (pointer:fine)').matches){let cx=0,cy=0,tx=0,ty=0;addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;cu.classList.add('on')},{passive:true});(function f(){cx+=(tx-cx)*.2;cy+=(ty-cy)*.2;cu.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(f)})();addEventListener('pointerover',e=>{const t=e.target.closest&&e.target.closest('[data-cur]');cu.dataset.l=t?t.dataset.cur:'';cu.classList.toggle('h',!!(t||(e.target.closest&&e.target.closest('a,button'))))})}
+const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target)}}),{threshold:.12});$$('.rv').forEach(x=>rio.observe(x));
+addEventListener('pointermove',e=>{body.style.setProperty('--gx',e.clientX+'px');body.style.setProperty('--gy',e.clientY+'px')},{passive:true});
+/* ---------- 影调：冷青灰 → 暖橙夕照，单向，不可逆（按已读到的最远位置推进） ---------- */
+const bar=$('#bar');let wm=0;
+const onScroll=()=>{const p=scrollY/Math.max(1,root.scrollHeight-innerHeight);bar.style.transform=`scaleX(${Math.min(1,p)})`;if(p>wm){wm=Math.min(1,p);root.style.setProperty('--warm',wm.toFixed(3))}};
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+/* ---------- 数字 ---------- */
+$$('.stats b[data-n]').forEach(b=>{const n=+b.dataset.n;if(rm)return;let i=0;b.textContent='0';const iv=setInterval(()=>{b.textContent=Math.min(n,++i);if(i>=n)clearInterval(iv)},170)});
+/* ---------- 六格底片 ---------- */
+const frames=$$('.fr'),got=$('#got');let nGot=0;
+const net=/^https?:$/.test(location.protocol)&&typeof fetch=='function';
+const fmt=n=>n>=1048576?(n/1048576).toFixed(1)+' MB':Math.max(1,Math.round(n/1024))+' KB';
+frames.forEach(fr=>{const a=fr.querySelector('.dl-btn'),st=fr.querySelector('.st'),title=fr.querySelector('h3').textContent;
+ const lock=on=>{if(on){a.setAttribute('aria-disabled','true');a.tabIndex=-1}else if(!fr.classList.contains('miss')){a.removeAttribute('aria-disabled');a.tabIndex=0}};
+ fr.addEventListener('pointerenter',()=>body.dataset.t=fr.dataset.t);fr.addEventListener('pointerleave',()=>body.dataset.t='base');
+ fr.addEventListener('focusin',()=>body.dataset.t=fr.dataset.t);fr.addEventListener('focusout',()=>body.dataset.t='base');
+ if(fr.dataset.seal){fr.classList.add('sealed');lock(true);const s=document.createElement('button');s.className='seal';s.dataset.cur='撕开';s.textContent='含剧透　撕开封条';s.setAttribute('aria-label','本物料含剧透。撕开封条后才能下载');
+  s.onclick=()=>{if(s.classList.contains('torn'))return;s.classList.add('torn');sfx('tear');setTimeout(()=>{s.remove();fr.classList.remove('sealed');lock(false);toast('封条已撕开：含剧透，请自行斟酌')},rm?0:650)};fr.prepend(s)}
+ a.addEventListener('click',e=>{if(a.getAttribute('aria-disabled')=='true'){e.preventDefault();return}fr.classList.add('got');got.textContent=++nGot;sfx('shutter');toast('底片已取出：'+title)});
+ if(net)fetch(a.getAttribute('href'),{method:'HEAD',cache:'no-store'}).then(r=>{const ct=r.headers.get('content-type')||'',n=+r.headers.get('content-length');
+  if(!r.ok||(/text\/html/i.test(ct)&&!/\.html?$/i.test(a.getAttribute('href')))){fr.classList.add('miss');st.textContent='待上传';a.textContent='暂未上传';lock(true)}else st.textContent='可下载'+(n?'　'+fmt(n):'')}).catch(()=>{})});
+$('#blank').onclick=e=>{const b=e.currentTarget;b.classList.remove('sh');void b.offsetWidth;b.classList.add('sh');sfx('shutter');toast('光线不足，这一格还没有显影。')};
+/* ---------- 使用许可：用途 → 盖章 ---------- */
+const V={ok:['允许','PERMITTED'],no:['禁止','PROHIBITED'],ask:['需授权','CONTACT']},sp=$('#stamp');
+$$('.chip').forEach(c=>c.addEventListener('click',()=>{$$('.chip').forEach(x=>x.setAttribute('aria-pressed',x===c));const v=V[c.dataset.v];sp.className='stamp';void sp.offsetWidth;sp.className='stamp '+c.dataset.v;sp.querySelector('b').textContent=v[0];sp.querySelector('small').textContent=v[1];$('#vn').textContent=c.dataset.n;sfx('thud')}));
+$('#copy').onclick=async()=>{const t='素材来源：《沉默之狼 The Silent Wolf》© 2026';try{await navigator.clipboard.writeText(t)}catch(e){const ta=document.createElement('textarea');ta.value=t;body.append(ta);ta.select();try{document.execCommand('copy')}catch(_){}ta.remove()}toast('已复制：'+t)};
+})();
 </script>
 </body>
 </html>
