@@ -40,7 +40,7 @@ nav a:hover{color:var(--tx)}nav a.on{color:var(--tx);border-color:var(--t)}
 .snd{background:none;border:1px solid #ffffff44;color:var(--mu);border-radius:20px;padding:.2rem .8rem;font-size:.8rem;letter-spacing:.2em;cursor:pointer;white-space:nowrap;transition:.3s}
 .snd[aria-pressed=true]{color:var(--tx);border-color:var(--t)}
 /* 开场、颗粒、光标（与首页一致） */
-#intro{position:fixed;inset:0;z-index:200;background:#05080b;display:grid;place-items:center;cursor:pointer;animation:introOut .9s 2.7s forwards}
+#intro{position:fixed;inset:0;z-index:200;background:#05080b;display:grid;place-items:center;cursor:pointer;animation:introOut .7s 6.6s forwards}
 #intro div{text-align:center}
 #intro b{display:block;font-size:clamp(2.6rem,9vw,6rem);letter-spacing:.5em;font-weight:900;padding-left:.5em;animation:introIn 1.8s ease-out both}
 #intro small{display:block;margin-top:1.2rem;font:600 .7rem/1 Arial,sans-serif;letter-spacing:.7em;color:var(--mu);animation:introIn 2.2s .4s ease-out both}
@@ -133,19 +133,32 @@ footer{padding:6vh 6vw;color:var(--mu);font-size:.85rem;border-top:1px solid #ff
 @media(max-width:820px){.brand{letter-spacing:.15em}.snd{padding:.2rem .6rem}.ah h2{letter-spacing:.45em}.ah span{display:none}.dh{padding-top:calc(var(--nav) + 12vh)}.vd{gap:2rem}.stats{gap:2rem}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none;filter:none}#intro,.grain,.reel{display:none}}
 @media print{header,#bar,#cu,#intro,.grain,.snd,.reel,#toast,.chips,.seal,.blank,.wash{display:none!important}body{background:#fff;color:#000}.terms li,.terms p,#vn,.lead,.desc{color:#000}.fr{border:1px solid #999;background:#fff}.ext{-webkit-text-stroke:1px #000}}
+
+.eq{display:inline-flex;gap:2px;align-items:flex-end;height:11px;margin-right:.55em;vertical-align:-1px}
+.eq i{display:block;width:2px;height:3px;background:currentColor}
+.snd[aria-pressed=true] .eq i{animation:eq .9s ease-in-out infinite}
+.snd[aria-pressed=true] .eq i:nth-child(2){animation-delay:-.3s}
+.snd[aria-pressed=true] .eq i:nth-child(3){animation-delay:-.6s}
+@keyframes eq{50%{height:11px}}
+@keyframes iFade{from{opacity:0}to{opacity:1}}
+.ichoose{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;margin-top:3.2rem;opacity:0;animation:iFade 1s 1.5s ease-out forwards}
+.ichoose button{padding:.8rem 1.8rem .8rem calc(1.8rem + .4em);background:transparent;border:1px solid #ffffff44;color:var(--tx);font-size:.82rem;letter-spacing:.4em;cursor:pointer;transition:.3s}
+.ichoose button:first-child{border-color:var(--t)}
+.ichoose button:hover,.ichoose button:focus-visible{background:color-mix(in srgb,var(--t) 20%,transparent)}
+.ihint{margin-top:1.4rem;font-size:.7rem;letter-spacing:.5em;color:var(--mu);opacity:0;animation:iFade 1s 1.9s ease-out forwards}
 </style>
 </head>
 <body data-t="base">
 <script>try{if(sessionStorage.getItem('swi'))document.documentElement.classList.add('nointro')}catch(e){}</script>
 <a class="skip" href="#files">跳到物料列表</a>
 <div class="wash"></div><div id="bar"></div><div class="grain"></div><div id="cu" data-l=""></div>
-<div id="intro" aria-hidden="true"><div><b>沉默之狼</b><small>THE SILENT WOLF</small></div></div>
+<div id="intro" role="dialog" aria-label="进入沉默之狼"><div><b>沉默之狼</b><small>THE SILENT WOLF</small><div class="ichoose"><button type="button" id="isnd">开启声音进入</button><button type="button" id="imute">静音进入</button></div><p class="ihint">建议佩戴耳机</p></div></div>
 <header>
   <a class="brand" href="index.html"><img src="assets/images/logo.png" alt="" onerror="this.remove()">沉默之狼</a>
   <nav>
     <a href="index.html#story">故事</a><a href="index.html#trailer">预告</a><a href="index.html#cast">人物</a><a href="index.html#stills">剧照</a><a href="index.html#archive">档案</a><a href="download.html" class="on" aria-current="page">下载</a>
   </nav>
-  <button class="snd" id="snd" aria-pressed="false" title="开启环境雨声">雨声</button>
+  <button class="snd" id="snd" aria-pressed="false" title="开启声音（风声与音效）"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>声音</button>
 </header>
 
 <main>
@@ -270,14 +283,205 @@ footer{padding:6vh 6vw;color:var(--mu);font-size:.85rem;border-top:1px solid #ff
 <script>
 (()=>{
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],rm=matchMedia('(prefers-reduced-motion:reduce)').matches,body=document.body,root=document.documentElement;
-/* ---------- 环境雨声与音效（与首页一致：默认关闭） ---------- */
-let ac,gn;const snd=$('#snd'),sOn=()=>snd.getAttribute('aria-pressed')=='true';
-const audio=()=>{if(!ac){try{ac=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}return ac};
-snd.onclick=()=>{const on=!sOn();snd.setAttribute('aria-pressed',on);const c=audio();if(!c)return;if(!gn){const b=c.createBuffer(1,c.sampleRate*2,c.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;const s=c.createBufferSource();s.buffer=b;s.loop=true;const f=c.createBiquadFilter();f.type='bandpass';f.frequency.value=1500;f.Q.value=.5;gn=c.createGain();gn.gain.value=0;s.connect(f);f.connect(gn);gn.connect(c.destination);s.start()}c.resume();gn.gain.linearRampToValueAtTime(on?.04:0,c.currentTime+1.4)};
-const sfx=t=>{if(!ac||!sOn())return;const c=ac,g=c.createGain();g.connect(c.destination);if(t=='shutter'||t=='tear'){const len=t=='tear'?.24:.07,b=c.createBuffer(1,c.sampleRate*len,c.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);const s=c.createBufferSource();s.buffer=b;g.gain.value=t=='tear'?.3:.25;s.connect(g);s.start()}else{const o=c.createOscillator();o.frequency.setValueAtTime(150,c.currentTime);o.frequency.exponentialRampToValueAtTime(50,c.currentTime+.35);g.gain.setValueAtTime(.2,c.currentTime);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+.4);o.connect(g);o.start();o.stop(c.currentTime+.4)}};
+/* ============ 声音系统：院线级声场（全部由 WebAudio 实时合成，无需任何音频文件） ============
+   总线：dry → 压缩器（防爆音）；wet → 程序生成的「夜场球场」混响。
+   风声 = 低频轰鸣 + 风体 + 高频嘶声 + 围栏啸声，按随机阵风起落、左右缓慢游移，另有雨后的零星滴水。 */
+var ac=null,mst=null,vrbIn=null,whiteBuf=null,pinkBuf=null,soundOn=false,windNodes=null,windTimer=null,dripTimer=null,watchTimer=null,watchNodes=null,videoOn=false,pIdx=0,WIND=.95,SWS='sws';
+function AC(){
+ if(!ac){
+  try{
+   ac=new (window.AudioContext||window.webkitAudioContext)();
+   var comp=ac.createDynamicsCompressor();comp.threshold.value=-20;comp.knee.value=18;comp.ratio.value=3.2;comp.attack.value=.006;comp.release.value=.28;
+   mst=ac.createGain();mst.gain.value=.9;mst.connect(comp);comp.connect(ac.destination);
+   var sr=ac.sampleRate,len=Math.floor(sr*2.6),ir=ac.createBuffer(2,len,sr),ch,i,d,lp,t,w,b0,b1,b2,b3,b4,b5,b6;
+   for(ch=0;ch<2;ch++){d=ir.getChannelData(ch);lp=0;for(i=0;i<len;i++){t=i/len;lp+=((Math.random()*2-1)-lp)*Math.max(.04,.55-.5*t);d[i]=lp*Math.pow(1-t,2.8)*2.2}}
+   var cv=ac.createConvolver();cv.buffer=ir;var vg=ac.createGain();vg.gain.value=.85;cv.connect(vg);vg.connect(mst);
+   vrbIn=ac.createGain();vrbIn.gain.value=1;vrbIn.connect(cv);
+   whiteBuf=ac.createBuffer(1,sr*2,sr);d=whiteBuf.getChannelData(0);for(i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+   var pl=sr*6;pinkBuf=ac.createBuffer(2,pl,sr);
+   for(ch=0;ch<2;ch++){d=pinkBuf.getChannelData(ch);b0=b1=b2=b3=b4=b5=b6=0;for(i=0;i<pl;i++){w=Math.random()*2-1;b0=.99886*b0+w*.0555179;b1=.99332*b1+w*.0750759;b2=.969*b2+w*.153852;b3=.8665*b3+w*.3104856;b4=.55*b4+w*.5329522;b5=-.7616*b5-w*.016898;d[i]=(b0+b1+b2+b3+b4+b5+b6+w*.5362)*.11;b6=w*.115926}}
+  }catch(e){ac=null}
+ }
+ if(ac&&ac.state==='suspended'){try{ac.resume()}catch(e){}}
+ return ac;
+}
+function out(n,wet,pan){
+ if(pan&&ac.createStereoPanner){var p=ac.createStereoPanner();p.pan.value=Math.max(-1,Math.min(1,pan));n.connect(p);n=p}
+ n.connect(mst);
+ if(wet){var s=ac.createGain();s.gain.value=wet;n.connect(s);s.connect(vrbIn)}
+}
+function osc(type,f0,f1,dur,vol,o){
+ o=o||{};var t=ac.currentTime+(o.t||0),a=o.a||.006,s=ac.createOscillator(),g=ac.createGain();
+ s.type=type;s.frequency.setValueAtTime(f0,t);if(f1&&f1!==f0)s.frequency.exponentialRampToValueAtTime(f1,t+dur);
+ g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(vol,t+a);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+ s.connect(g);out(g,o.wet,o.pan);s.start(t);s.stop(t+dur+.05);return s;
+}
+function nz(dur,type,f,q,vol,o){
+ o=o||{};var t=ac.currentTime+(o.t||0),a=Math.min(o.a||.003,dur*.9),s=ac.createBufferSource(),fl=ac.createBiquadFilter(),g=ac.createGain(),buf=o.pink?pinkBuf:whiteBuf;
+ s.buffer=buf;fl.type=type;fl.frequency.setValueAtTime(f,t);if(o.f2)fl.frequency.exponentialRampToValueAtTime(o.f2,t+dur);fl.Q.value=q;
+ g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(vol,t+a);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+ s.connect(fl);fl.connect(g);out(g,o.wet,o.pan);
+ s.start(t,Math.max(0,Math.random()*(buf.duration-dur-.2)),dur+.1);return s;
+}
+function whoosh(dur,vol,o){o=o||{};nz(dur,'bandpass',o.f||380,.9,vol,{pink:1,f2:o.f2||1700,a:dur*.45,wet:.25,pan:o.pan})}
+/* 相机快门：反光镜落下 → 前帘「咔」→ 后帘「嚓」 */
+function shutterSnd(v){v=v||1;
+ osc('sine',190,80,.06,.12*v,{wet:.05});
+ nz(.035,'lowpass',1100,.8,.2*v,{a:.001});
+ nz(.014,'bandpass',4600,7,.22*v,{t:.012,a:.0008});
+ nz(.022,'bandpass',2300,3,.16*v,{t:.016,a:.0008});
+ nz(.014,'bandpass',3300,6,.17*v,{t:.088,a:.0008});
+ nz(.032,'bandpass',1700,3,.12*v,{t:.094,a:.0008});
+ osc('sine',3900,2600,.06,.012*v,{t:.014});
+}
+/* 银色口哨（Ariff）：带豆珠颤音的哨声 */
+function whistleSnd(len,vol){
+ var t=ac.currentTime,o=ac.createOscillator(),g=ac.createGain(),lf=ac.createOscillator(),lg=ac.createGain(),am=ac.createOscillator(),ag=ac.createGain();
+ o.type='sine';o.frequency.setValueAtTime(2850,t);o.frequency.linearRampToValueAtTime(3050,t+len*.4);o.frequency.linearRampToValueAtTime(2900,t+len);
+ lf.frequency.value=6;lg.gain.value=22;lf.connect(lg);lg.connect(o.frequency);
+ g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(vol,t+.03);g.gain.setValueAtTime(vol,t+Math.max(.04,len-.08));g.gain.exponentialRampToValueAtTime(.0001,t+len);
+ am.frequency.value=38;ag.gain.value=vol*.35;am.connect(ag);ag.connect(g.gain);
+ o.connect(g);out(g,.22);o.start(t);lf.start(t);am.start(t);o.stop(t+len+.05);lf.stop(t+len+.05);am.stop(t+len+.05);
+ nz(len,'bandpass',3000,2.2,vol*.5,{a:.03,wet:.2});
+}
+/* 狼嚎（陈知白「天狼」）：锯齿波声源 + 共振峰滤波 + 延迟出现的颤音 + 气声，远处的、带回声的长嚎 */
+function howlSnd(o){
+ o=o||{};var vol=o.vol||.1,sc=o.len||1,f0=o.f||300,base=o.t||0,L=3.9*sc;
+ function voice(off,mult,v,pan){
+  var tt=ac.currentTime+base+off,mix=ac.createGain(),lp=ac.createBiquadFilter(),p1=ac.createBiquadFilter(),p2=ac.createBiquadFilter(),g=ac.createGain(),
+  cfg=[['sawtooth',1,.32],['sawtooth',1.006,.32],['sine',1,.7],['triangle',2,.12]],
+  pts=[[0,.78],[.22,.92],[.34,1.2],[.5,1.72],[.64,1.76],[.74,1.8],[.86,1.46],[1,1]],
+  vib=ac.createOscillator(),vg=ac.createGain();
+  vib.frequency.value=5.3;vg.gain.setValueAtTime(0,tt);vg.gain.linearRampToValueAtTime(10*mult,tt+L*.5);vib.connect(vg);
+  cfg.forEach(function(c){var s=ac.createOscillator(),cg=ac.createGain();s.type=c[0];cg.gain.value=c[2];
+   s.frequency.setValueAtTime(f0*pts[0][1]*mult*c[1],tt);
+   pts.forEach(function(p,k){if(k)s.frequency.linearRampToValueAtTime(f0*p[1]*mult*c[1],tt+L*p[0])});
+   vg.connect(s.frequency);s.connect(cg);cg.connect(mix);s.start(tt);s.stop(tt+L+.3)});
+  vib.start(tt);vib.stop(tt+L+.3);
+  lp.type='lowpass';lp.frequency.value=1500;lp.Q.value=1.2;
+  p1.type='peaking';p1.frequency.value=680;p1.Q.value=2;p1.gain.value=7;
+  p2.type='peaking';p2.frequency.value=1120;p2.Q.value=2;p2.gain.value=4;
+  mix.connect(lp);lp.connect(p1);p1.connect(p2);p2.connect(g);
+  g.gain.setValueAtTime(.0001,tt);g.gain.linearRampToValueAtTime(v,tt+.55);g.gain.linearRampToValueAtTime(v*.92,tt+L*.7);g.gain.exponentialRampToValueAtTime(.0001,tt+L);
+  out(g,.7,pan);
+  nz(L*.9,'bandpass',1000,.9,v*.3,{pink:1,a:.55,t:base+off,wet:.4,pan:pan});
+ }
+ voice(0,1,vol,o.pan==null?-.25:o.pan);
+ if(o.answer)voice(2.3*sc,.84,vol*.5,.3);
+}
+/* 钢琴：加法合成 + 琴槌轻响，长衰减 + 空间感 */
+function pianoNote(f,t,v){
+ var P=[[1,1],[2,.42],[3,.2],[4,.1],[5,.05]],dec=Math.max(1.4,3.4-f/330);
+ P.forEach(function(p,i){osc('sine',f*p[0],0,dec*(1-i*.12),v*p[1],{t:t,a:.004,wet:.5})});
+ nz(.03,'lowpass',900,.7,v*.5,{t:t,a:.001,wet:.2});
+}
+var PROG=[[220,329.63,440],[174.61,261.63,349.23,440],[261.63,329.63,392,523.25]];
+/* 陈知夜：怀表走针 + 低频下沉（按住时） */
+function watchStart(){
+ if(!ac||watchTimer)return;
+ var t=ac.currentTime,o1=ac.createOscillator(),o2=ac.createOscillator(),g=ac.createGain(),n=0;
+ o1.type='sine';o1.frequency.setValueAtTime(49,t);o1.frequency.linearRampToValueAtTime(58,t+3);o2.type='triangle';o2.frequency.value=98;
+ g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(.1,t+2.4);o1.connect(g);o2.connect(g);out(g,.4);o1.start(t);o2.start(t);
+ watchNodes={o1:o1,o2:o2,g:g};
+ watchTimer=setInterval(function(){var up=(n++%2===0);nz(.012,'bandpass',up?5200:4300,9,up?.12:.085,{a:.0005,wet:.14,pan:up?-.18:.18});osc('sine',up?1250:1000,up?880:760,.03,.02,{wet:.1})},420);
+}
+function watchStop(){
+ clearInterval(watchTimer);watchTimer=null;
+ if(watchNodes&&ac){var w=watchNodes,now=ac.currentTime;watchNodes=null;try{var cv=w.g.gain.value;w.g.gain.cancelScheduledValues(now);w.g.gain.setValueAtTime(cv,now);w.g.gain.setTargetAtTime(.0001,now,.25)}catch(e){}setTimeout(function(){try{w.o1.stop();w.o2.stop()}catch(e){}},1500)}
+}
+/* ---------- 环境风声 ---------- */
+function startWind(){
+ if(!AC()||windNodes)return;
+ var t=ac.currentTime,src=ac.createBufferSource(),master=ac.createGain(),bus=ac.createGain(),pn=ac.createStereoPanner?ac.createStereoPanner():null,lf=ac.createOscillator(),lg=ac.createGain();
+ src.buffer=pinkBuf;src.loop=true;bus.gain.value=WIND;
+ function layer(type,f,q){var fl=ac.createBiquadFilter(),g=ac.createGain();fl.type=type;fl.frequency.value=f;fl.Q.value=q;g.gain.value=0;src.connect(fl);fl.connect(g);g.connect(bus);return{f:fl,g:g}}
+ var rum=layer('lowpass',150,.7),body=layer('bandpass',380,.6),hiss=layer('bandpass',1900,.5),w1=layer('bandpass',760,28),w2=layer('bandpass',1190,34);
+ rum.g.gain.value=.12;
+ master.gain.setValueAtTime(.0001,t);master.gain.linearRampToValueAtTime(videoOn?.12:1,t+3);
+ if(pn){lf.frequency.value=.06;lg.gain.value=.55;lf.connect(lg);lg.connect(pn.pan);lf.start(t);bus.connect(pn);pn.connect(master)}else{bus.connect(master)}
+ master.connect(mst);var rs=ac.createGain();rs.gain.value=.22;master.connect(rs);rs.connect(vrbIn);
+ src.start(t,Math.random()*3);
+ windNodes={src:src,master:master,lf:lf,pn:pn};
+ (function gust(){
+  if(!windNodes)return;
+  var now=ac.currentTime,s=.25+Math.random()*.75,rise=1.2+Math.random()*2.2,hold=.6+Math.random()*1.8,fall=now+rise+hold,wv=Math.max(0,s-.55)*.5;
+  body.g.gain.setTargetAtTime(.1+s*.6,now,rise*.45);body.f.frequency.setTargetAtTime(240+s*260,now,rise*.5);
+  hiss.g.gain.setTargetAtTime(.01+s*.08,now,rise*.6);hiss.f.frequency.setTargetAtTime(1100+s*800,now,rise*.6);
+  w1.g.gain.setTargetAtTime(wv*2.4,now,rise*.5);w2.g.gain.setTargetAtTime(wv*1.4,now,rise*.5);
+  w1.f.frequency.setTargetAtTime(700+Math.random()*160,now,rise);w2.f.frequency.setTargetAtTime(1080+Math.random()*200,now,rise);
+  body.g.gain.setTargetAtTime(.022,fall,1.6);body.f.frequency.setTargetAtTime(230,fall,1.6);hiss.g.gain.setTargetAtTime(.006,fall,1.8);w1.g.gain.setTargetAtTime(0,fall,.8);w2.g.gain.setTargetAtTime(0,fall,.8);
+  windTimer=setTimeout(gust,(rise+hold+1.5+Math.random()*4.5)*1000);
+ })();
+ dripLoop();
+}
+function dripLoop(){
+ clearTimeout(dripTimer);
+ dripTimer=setTimeout(function(){if(!windNodes)return;var f=1500+Math.random()*1400;osc('sine',f,f*1.9,.07,.03,{wet:.65,pan:Math.random()*1.4-.7,a:.002});dripLoop()},3500+Math.random()*7500);
+}
+function stopWind(){
+ clearTimeout(windTimer);clearTimeout(dripTimer);
+ if(!windNodes||!ac)return;var w=windNodes,now=ac.currentTime;windNodes=null;
+ try{var cv=w.master.gain.value;w.master.gain.cancelScheduledValues(now);w.master.gain.setValueAtTime(cv,now);w.master.gain.setTargetAtTime(.0001,now,.5)}catch(e){}
+ setTimeout(function(){try{w.src.stop();if(w.pn)w.lf.stop()}catch(e){}},2800);
+}
+function duck(on){videoOn=on;if(windNodes&&ac){var m=windNodes.master.gain,now=ac.currentTime;try{var cv=m.value;m.cancelScheduledValues(now);m.setValueAtTime(cv,now);m.setTargetAtTime(on?.12:1,now,.6)}catch(e){}}}
+/* ---------- 音效表：每一个都为这部片子的世界观调过 ---------- */
+var SFX={
+ click:function(){osc('sine',240,140,.07,.09,{wet:.12});nz(.018,'bandpass',3200,3,.03)},
+ switch:function(){whoosh(.5,.06,{f:420,f2:1500});osc('sine',130,70,.22,.07,{t:.3,wet:.2})},
+ thud:function(){osc('sine',92,36,.8,.2,{wet:.28});nz(.22,'lowpass',160,.8,.1,{wet:.2})},
+ shutter:function(){shutterSnd(1.6)},
+ whistle:function(){whistleSnd(.6,.085)},
+ ding:function(){whistleSnd(.6,.085)},
+ whistleS:function(){whistleSnd(.22,.045)},
+ howl:function(){howlSnd({vol:.075,answer:1})},
+ howlSoft:function(){howlSnd({vol:.035,len:.8})},
+ clap:function(){[0,.013,.027].forEach(function(t,i){nz(.016,'bandpass',1500+i*140,1.1,.25,{t:t,a:.0008,wet:.2})});nz(.14,'bandpass',900,.7,.12,{t:.03,wet:.3})},
+ ball:function(){osc('sine',160,70,.1,.16);nz(.03,'lowpass',620,.8,.12);osc('sine',140,65,.08,.08,{t:.17});nz(.02,'lowpass',560,.8,.06,{t:.17})},
+ wind:function(){nz(1.5,'bandpass',260,.8,.3,{pink:1,f2:1300,a:.55,wet:.3,pan:-.5});nz(1.5,'lowpass',180,.7,.18,{pink:1,a:.4});nz(1.35,'bandpass',900,24,.08,{pink:1,f2:1250,a:.5,t:.1,pan:.4,wet:.4})},
+ tick:function(){nz(.008,'bandpass',5400,9,.12,{a:.0005,wet:.08});osc('sine',620,430,.04,.05,{t:.012})},
+ type:function(){nz(.022,'highpass',2600+Math.random()*900,.8,.03,{a:.002})},
+ paper:function(){nz(.38,'highpass',1800,.6,.09,{pink:1,f2:5200,a:.12,wet:.1});for(var i=0;i<5;i++)nz(.012,'bandpass',3000+Math.random()*2500,2,.05,{t:.04+Math.random()*.3,a:.001})},
+ landing:function(){osc('sine',165,85,.1,.1,{wet:.1});nz(.06,'lowpass',520,.7,.1)},
+ open:function(){whoosh(.7,.07,{f:220,f2:1100});osc('sine',110,165,.9,.07,{wet:.45,a:.25});osc('sine',55,55,1,.05,{wet:.3,a:.2})},
+ close:function(){whoosh(.5,.05,{f:900,f2:240});osc('sine',165,82,.6,.06,{wet:.4})},
+ roll:function(){nz(.01,'bandpass',2000,3,.06,{a:.0008})},
+ piano:function(){var ch=PROG[Math.min(pIdx,PROG.length-1)];pIdx++;ch.forEach(function(f,i){pianoNote(f,i*.22,.09-i*.008)})},
+ watchOn:function(){watchStart()},
+ watchOff:function(){watchStop()},
+ title:function(){osc('sine',70,32,2.6,.22,{wet:.35,a:.02});nz(2,'lowpass',200,.7,.16,{pink:1,a:.9,wet:.4});whoosh(1.7,.08,{f:200,f2:900});pianoNote(220,.2,.08);pianoNote(329.63,.55,.07);howlSnd({vol:.04,len:.85,t:1.5,f:290})}
+};
+function play(n){if(!soundOn||!AC())return;if(videoOn&&n!=='click')return;try{if(SFX[n])SFX[n]()}catch(e){}}
+/* ---------- 声音开关：默认静音；经访客主动开启（进场选择或右上角按钮）；同一次浏览内记住选择 ---------- */
+var snd=$('#snd');
+function uiSnd(){if(snd){snd.setAttribute('aria-pressed',soundOn?'true':'false');snd.title=soundOn?'关闭声音':'开启声音（风声与音效）'}}
+function setSound(v,quiet){
+ soundOn=!!v;try{sessionStorage.setItem(SWS,soundOn?'1':'0')}catch(e){}
+ if(soundOn){if(AC()){startWind();if(!quiet)play('click')}}else{stopWind();watchStop()}
+ uiSnd();
+}
+if(snd)snd.onclick=function(){setSound(!soundOn)};
+try{if(sessionStorage.getItem(SWS)==='1'){soundOn=true;uiSnd();var armSnd=function(){document.removeEventListener('pointerdown',armSnd,true);document.removeEventListener('keydown',armSnd,true);if(soundOn&&AC())startWind()};document.addEventListener('pointerdown',armSnd,true);document.addEventListener('keydown',armSnd,true)}}catch(e){}
+window.SWSound={play:play,set:setSound,state:function(){return soundOn}};Object.defineProperty(window.SWSound,'names',{get:function(){return Object.keys(SFX)}});
+
+/* 本页专属音效：撕封条 / 盖章 / 底片显影 */
+SFX.tear=function(){nz(.34,'bandpass',1800,.8,.2,{pink:1,f2:5200,a:.04,wet:.1});for(var i=0;i<9;i++)nz(.012,'bandpass',2200+Math.random()*3000,2,.05,{t:i*.032+Math.random()*.01,a:.001})};
+SFX.stamp=function(){osc('sine',120,48,.32,.3,{wet:.2});nz(.05,'lowpass',700,.8,.18,{a:.001});nz(.09,'bandpass',2600,1.2,.05,{t:.02,a:.001})};
+SFX.develop=function(){nz(.5,'bandpass',900,.7,.03,{pink:1,f2:1800,a:.2,wet:.3});for(var i=0;i<3;i++)osc('sine',500+Math.random()*500,1400+Math.random()*900,.06,.02,{t:.05+i*.12+Math.random()*.08,wet:.5})};
+var devCool={};
 let tt;const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2800)};
 /* ---------- 开场（与首页共用“已看过”标记） / 光标 / 揭示 ---------- */
-const intro=$('#intro');if(intro){const kill=()=>{try{sessionStorage.setItem('swi','1')}catch(e){}intro.remove()};intro.addEventListener('click',kill);intro.addEventListener('animationend',e=>{if(e.animationName=='introOut')kill()})}
+const intro=$('#intro');
+if(intro){
+ const kill=()=>{try{sessionStorage.setItem('swi','1')}catch(e){}if(document.body.contains(intro))intro.remove()};
+ const enter=withSound=>{if(withSound){setSound(true,true);play('title')}intro.style.transition='opacity .9s';intro.style.pointerEvents='none';intro.style.opacity='0';setTimeout(kill,withSound?1100:800)};
+ intro.addEventListener('click',()=>enter(false));
+ const bs=$('#isnd'),bq=$('#imute');
+ if(bs)bs.addEventListener('click',e=>{e.stopPropagation();enter(true)});
+ if(bq)bq.addEventListener('click',e=>{e.stopPropagation();enter(false)});
+ intro.addEventListener('animationend',e=>{if(e.animationName=='introOut')kill()});
+ setTimeout(()=>{if(document.body.contains(intro))kill()},7500);
+}
 addEventListener('keydown',e=>{if(e.key=='Escape'){const i=$('#intro');if(i)i.click()}});
 const cu=$('#cu');if(cu&&matchMedia('(hover:hover) and (pointer:fine)').matches){let cx=0,cy=0,tx=0,ty=0;addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;cu.classList.add('on')},{passive:true});(function f(){cx+=(tx-cx)*.2;cy+=(ty-cy)*.2;cu.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(f)})();addEventListener('pointerover',e=>{const t=e.target.closest&&e.target.closest('[data-cur]');cu.dataset.l=t?t.dataset.cur:'';cu.classList.toggle('h',!!(t||(e.target.closest&&e.target.closest('a,button'))))})}
 const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target)}}),{threshold:.12});$$('.rv').forEach(x=>rio.observe(x));
@@ -294,17 +498,17 @@ const net=/^https?:$/.test(location.protocol)&&typeof fetch=='function';
 const fmt=n=>n>=1048576?(n/1048576).toFixed(1)+' MB':Math.max(1,Math.round(n/1024))+' KB';
 frames.forEach(fr=>{const a=fr.querySelector('.dl-btn'),st=fr.querySelector('.st'),title=fr.querySelector('h3').textContent;
  const lock=on=>{if(on){a.setAttribute('aria-disabled','true');a.tabIndex=-1}else if(!fr.classList.contains('miss')){a.removeAttribute('aria-disabled');a.tabIndex=0}};
- fr.addEventListener('pointerenter',()=>body.dataset.t=fr.dataset.t);fr.addEventListener('pointerleave',()=>body.dataset.t='base');
+ fr.addEventListener('pointerenter',()=>{body.dataset.t=fr.dataset.t;const k=fr.dataset.t,n=Date.now();if(!devCool[k]||n-devCool[k]>2500){devCool[k]=n;play('develop')}});fr.addEventListener('pointerleave',()=>body.dataset.t='base');
  fr.addEventListener('focusin',()=>body.dataset.t=fr.dataset.t);fr.addEventListener('focusout',()=>body.dataset.t='base');
  if(fr.dataset.seal){fr.classList.add('sealed');lock(true);const s=document.createElement('button');s.className='seal';s.dataset.cur='撕开';s.textContent='含剧透　撕开封条';s.setAttribute('aria-label','本物料含剧透。撕开封条后才能下载');
-  s.onclick=()=>{if(s.classList.contains('torn'))return;s.classList.add('torn');sfx('tear');setTimeout(()=>{s.remove();fr.classList.remove('sealed');lock(false);toast('封条已撕开：含剧透，请自行斟酌')},rm?0:650)};fr.prepend(s)}
- a.addEventListener('click',e=>{if(a.getAttribute('aria-disabled')=='true'){e.preventDefault();return}fr.classList.add('got');got.textContent=++nGot;sfx('shutter');toast('底片已取出：'+title)});
+  s.onclick=()=>{if(s.classList.contains('torn'))return;s.classList.add('torn');play('tear');setTimeout(()=>{s.remove();fr.classList.remove('sealed');lock(false);toast('封条已撕开：含剧透，请自行斟酌')},rm?0:650)};fr.prepend(s)}
+ a.addEventListener('click',e=>{if(a.getAttribute('aria-disabled')=='true'){e.preventDefault();return}fr.classList.add('got');got.textContent=++nGot;play('shutter');toast('底片已取出：'+title)});
  if(net)fetch(a.getAttribute('href'),{method:'HEAD',cache:'no-store'}).then(r=>{const ct=r.headers.get('content-type')||'',n=+r.headers.get('content-length');
   if(!r.ok||(/text\/html/i.test(ct)&&!/\.html?$/i.test(a.getAttribute('href')))){fr.classList.add('miss');st.textContent='待上传';a.textContent='暂未上传';lock(true)}else st.textContent='可下载'+(n?'　'+fmt(n):'')}).catch(()=>{})});
-$('#blank').onclick=e=>{const b=e.currentTarget;b.classList.remove('sh');void b.offsetWidth;b.classList.add('sh');sfx('shutter');toast('光线不足，这一格还没有显影。')};
+$('#blank').onclick=e=>{const b=e.currentTarget;b.classList.remove('sh');void b.offsetWidth;b.classList.add('sh');play('shutter');toast('光线不足，这一格还没有显影。')};
 /* ---------- 使用许可：用途 → 盖章 ---------- */
 const V={ok:['允许','PERMITTED'],no:['禁止','PROHIBITED'],ask:['需授权','CONTACT']},sp=$('#stamp');
-$$('.chip').forEach(c=>c.addEventListener('click',()=>{$$('.chip').forEach(x=>x.setAttribute('aria-pressed',x===c));const v=V[c.dataset.v];sp.className='stamp';void sp.offsetWidth;sp.className='stamp '+c.dataset.v;sp.querySelector('b').textContent=v[0];sp.querySelector('small').textContent=v[1];$('#vn').textContent=c.dataset.n;sfx('thud')}));
+$$('.chip').forEach(c=>c.addEventListener('click',()=>{$$('.chip').forEach(x=>x.setAttribute('aria-pressed',x===c));const v=V[c.dataset.v];sp.className='stamp';void sp.offsetWidth;sp.className='stamp '+c.dataset.v;sp.querySelector('b').textContent=v[0];sp.querySelector('small').textContent=v[1];$('#vn').textContent=c.dataset.n;play('stamp')}));
 $('#copy').onclick=async()=>{const t='素材来源：《沉默之狼 The Silent Wolf》© 2026';try{await navigator.clipboard.writeText(t)}catch(e){const ta=document.createElement('textarea');ta.value=t;body.append(ta);ta.select();try{document.execCommand('copy')}catch(_){}ta.remove()}toast('已复制：'+t)};
 })();
 </script>
