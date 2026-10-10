@@ -40,7 +40,7 @@ nav a:hover{color:var(--tx)}nav a.on{color:var(--tx);border-color:var(--t)}
 .snd{background:none;border:1px solid #ffffff44;color:var(--mu);border-radius:20px;padding:.2rem .8rem;font-size:.8rem;letter-spacing:.2em;cursor:pointer;white-space:nowrap;transition:.3s}
 .snd[aria-pressed=true]{color:var(--tx);border-color:var(--t)}
 /* 开场、颗粒、光标（与首页一致） */
-#intro{position:fixed;inset:0;z-index:200;background:#05080b;display:grid;place-items:center;cursor:pointer;animation:introOut .7s 6.6s forwards}
+#intro{position:fixed;inset:0;z-index:200;background:#05080b;display:grid;place-items:center;cursor:pointer;}
 #intro div{text-align:center}
 #intro b{display:block;font-size:clamp(2.6rem,9vw,6rem);letter-spacing:.5em;font-weight:900;padding-left:.5em;animation:introIn 1.8s ease-out both}
 #intro small{display:block;margin-top:1.2rem;font:600 .7rem/1 Arial,sans-serif;letter-spacing:.7em;color:var(--mu);animation:introIn 2.2s .4s ease-out both}
@@ -146,17 +146,25 @@ footer{padding:6vh 6vw;color:var(--mu);font-size:.85rem;border-top:1px solid #ff
 .ichoose button:first-child{border-color:var(--t)}
 .ichoose button:hover,.ichoose button:focus-visible{background:color-mix(in srgb,var(--t) 20%,transparent)}
 .ihint{margin-top:1.4rem;font-size:.7rem;letter-spacing:.5em;color:var(--mu);opacity:0;animation:iFade 1s 1.9s ease-out forwards}
+#cue{position:fixed;left:50%;bottom:8vh;transform:translate(-50%,10px);z-index:125;max-width:86vw;padding:.45rem 1.1rem;background:#05080bcc;color:#eef2f5;font-size:.92rem;letter-spacing:.3em;text-align:center;opacity:0;pointer-events:none;transition:opacity .5s,transform .5s}
+#cue.on{opacity:1;transform:translate(-50%,0)}
+
+/* ===== 开场：每次进入都询问是否开启声音；等访客选择后才进入 ===== */
+html.intro-open,html.intro-open body{overflow:hidden}
+.iask{margin-top:3rem;font-size:.95rem;letter-spacing:.6em;padding-left:.6em;color:var(--tx);opacity:0;animation:iFade 1s 1.3s ease-out forwards}
+.iask+.ichoose{margin-top:1.6rem}
 </style>
 </head>
 <body data-t="base">
-<script>try{if(sessionStorage.getItem('swi'))document.documentElement.classList.add('nointro')}catch(e){}</script>
+<script>(function(){try{var d=document.documentElement,n=(performance.getEntriesByType&&performance.getEntriesByType('navigation')[0])||{},internal=!!document.referrer&&location.origin!=='null'&&document.referrer.indexOf(location.origin)===0&&n.type!=='reload';d.classList.add(internal?'nointro':'intro-open')}catch(e){document.documentElement.classList.add('intro-open')}
+setTimeout(function(){if(!window.__swReady){var i=document.getElementById('intro');if(i)i.style.display='none';var r=document.documentElement;r.classList.remove('intro-open');r.classList.add('nointro')}},5000)})()</script>
 <a class="skip" href="#files">跳到物料列表</a>
 <div class="wash"></div><div id="bar"></div><div class="grain"></div><div id="cu" data-l=""></div>
-<div id="intro" role="dialog" aria-label="进入沉默之狼"><div><b>沉默之狼</b><small>THE SILENT WOLF</small><div class="ichoose"><button type="button" id="isnd">开启声音进入</button><button type="button" id="imute">静音进入</button></div><p class="ihint">建议佩戴耳机</p></div></div>
+<div id="intro" role="dialog" aria-label="进入沉默之狼"><div><b>沉默之狼</b><small>THE SILENT WOLF</small><p class="iask">是否开启声音？</p><div class="ichoose"><button type="button" id="isnd">开启声音进入</button><button type="button" id="imute">静音进入</button></div><p class="ihint">建议佩戴耳机</p></div></div>
 <header>
   <a class="brand" href="index.html"><img src="assets/images/logo.png" alt="" onerror="this.remove()">沉默之狼</a>
   <nav>
-    <a href="index.html#story">故事</a><a href="index.html#trailer">预告</a><a href="index.html#cast">人物</a><a href="index.html#stills">剧照</a><a href="index.html#archive">档案</a><a href="download.html" class="on" aria-current="page">下载</a>
+    <a href="index.html#story">故事</a><a href="index.html#trailer">预告</a><a href="index.html#cast">人物</a><a href="index.html#stills">剧照</a><a href="index.html#schedule">日程</a><a href="index.html#archive">档案</a><a href="download.html" class="on" aria-current="page">下载</a>
   </nav>
   <button class="snd" id="snd" aria-pressed="false" title="开启声音（风声与音效）"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>声音</button>
 </header>
@@ -290,7 +298,7 @@ var ac=null,mst=null,vrbIn=null,whiteBuf=null,pinkBuf=null,soundOn=false,windNod
 function AC(){
  if(!ac){
   try{
-   ac=new (window.AudioContext||window.webkitAudioContext)();
+   ac=new (window.AudioContext||window.webkitAudioContext)();HOWLWAVE=null;
    var comp=ac.createDynamicsCompressor();comp.threshold.value=-20;comp.knee.value=18;comp.ratio.value=3.2;comp.attack.value=.006;comp.release.value=.28;
    mst=ac.createGain();mst.gain.value=.9;mst.connect(comp);comp.connect(ac.destination);
    var sr=ac.sampleRate,len=Math.floor(sr*2.6),ir=ac.createBuffer(2,len,sr),ch,i,d,lp,t,w,b0,b1,b2,b3,b4,b5,b6;
@@ -344,30 +352,42 @@ function whistleSnd(len,vol){
  o.connect(g);out(g,.22);o.start(t);lf.start(t);am.start(t);o.stop(t+len+.05);lf.stop(t+len+.05);am.stop(t+len+.05);
  nz(len,'bandpass',3000,2.2,vol*.5,{a:.03,wet:.2});
 }
-/* 狼嚎（陈知白「天狼」）：锯齿波声源 + 共振峰滤波 + 延迟出现的颤音 + 气声，远处的、带回声的长嚎 */
+/* 狼嚎（陈知白「天狼」）：多只狼的合唱。
+   声源 = 28 次谐波的周期波（像真实声带，高频泛音丰富）+ 慢速音高抖动 + 5.6Hz 颤音 + 气声，
+   再过三个共振峰（"呜—"的元音）与峡谷回声。头狼先起，另两只狼稍后加入，音高各不相同。 */
+var HOWLWAVE=null;
+function howlWave(){
+ if(!HOWLWAVE){var n=28,re=new Float32Array(n),im=new Float32Array(n),k;for(k=1;k<n;k++)im[k]=(k%2?1:.8)/Math.pow(k,1.05);HOWLWAVE=ac.createPeriodicWave(re,im)}
+ return HOWLWAVE;
+}
 function howlSnd(o){
- o=o||{};var vol=o.vol||.1,sc=o.len||1,f0=o.f||300,base=o.t||0,L=3.9*sc;
- function voice(off,mult,v,pan){
-  var tt=ac.currentTime+base+off,mix=ac.createGain(),lp=ac.createBiquadFilter(),p1=ac.createBiquadFilter(),p2=ac.createBiquadFilter(),g=ac.createGain(),
-  cfg=[['sawtooth',1,.32],['sawtooth',1.006,.32],['sine',1,.7],['triangle',2,.12]],
-  pts=[[0,.78],[.22,.92],[.34,1.2],[.5,1.72],[.64,1.76],[.74,1.8],[.86,1.46],[1,1]],
-  vib=ac.createOscillator(),vg=ac.createGain();
-  vib.frequency.value=5.3;vg.gain.setValueAtTime(0,tt);vg.gain.linearRampToValueAtTime(10*mult,tt+L*.5);vib.connect(vg);
-  cfg.forEach(function(c){var s=ac.createOscillator(),cg=ac.createGain();s.type=c[0];cg.gain.value=c[2];
-   s.frequency.setValueAtTime(f0*pts[0][1]*mult*c[1],tt);
-   pts.forEach(function(p,k){if(k)s.frequency.linearRampToValueAtTime(f0*p[1]*mult*c[1],tt+L*p[0])});
-   vg.connect(s.frequency);s.connect(cg);cg.connect(mix);s.start(tt);s.stop(tt+L+.3)});
-  vib.start(tt);vib.stop(tt+L+.3);
-  lp.type='lowpass';lp.frequency.value=1500;lp.Q.value=1.2;
-  p1.type='peaking';p1.frequency.value=680;p1.Q.value=2;p1.gain.value=7;
-  p2.type='peaking';p2.frequency.value=1120;p2.Q.value=2;p2.gain.value=4;
-  mix.connect(lp);lp.connect(p1);p1.connect(p2);p2.connect(g);
-  g.gain.setValueAtTime(.0001,tt);g.gain.linearRampToValueAtTime(v,tt+.55);g.gain.linearRampToValueAtTime(v*.92,tt+L*.7);g.gain.exponentialRampToValueAtTime(.0001,tt+L);
-  out(g,.7,pan);
-  nz(L*.9,'bandpass',1000,.9,v*.3,{pink:1,a:.55,t:base+off,wet:.4,pan:pan});
- }
- voice(0,1,vol,o.pan==null?-.25:o.pan);
- if(o.answer)voice(2.3*sc,.84,vol*.5,.3);
+ o=o||{};var vol=o.vol||.1,sc=o.len||1,f0=o.f||330,base=o.t||0,L0=4.6*sc;
+ var bus=ac.createGain(),dl=ac.createDelay(1),fb=ac.createGain(),dlp=ac.createBiquadFilter(),dg=ac.createGain();
+ dl.delayTime.value=.46;fb.gain.value=.3;dlp.type='lowpass';dlp.frequency.value=2200;dg.gain.value=.38;
+ bus.connect(dl);dl.connect(dlp);dlp.connect(fb);fb.connect(dl);dlp.connect(dg);
+ out(bus,.55);out(dg,.5);
+ var voices=o.solo?[[0,1,1,-.25]]:[[0,1,1,-.25],[.8,.79,.7,.45],[1.6,1.19,.5,-.55]];
+ var pts=[[0,.8],[.16,.9],[.3,1.25],[.44,1.78],[.55,2.05],[.62,2.1],[.7,2.12],[.8,1.9],[.9,1.5],[1,1.12]];
+ voices.forEach(function(v,idx){
+  var off=v[0],mult=v[1],vg=v[2],pan=v[3],tt=ac.currentTime+base+off,L=L0*(1+idx*.08),
+  s1=ac.createOscillator(),s2=ac.createOscillator(),pre=ac.createGain(),lp=ac.createBiquadFilter(),p1=ac.createBiquadFilter(),p2=ac.createBiquadFilter(),p3=ac.createBiquadFilter(),g=ac.createGain(),
+  vib=ac.createOscillator(),vd=ac.createGain(),jit=ac.createOscillator(),jd=ac.createGain(),am=ac.createOscillator(),ad=ac.createGain();
+  s1.setPeriodicWave(howlWave());s2.setPeriodicWave(howlWave());
+  [s1,s2].forEach(function(s,i){var m=f0*mult*(i?1.004:1);s.frequency.setValueAtTime(m*pts[0][1],tt);pts.forEach(function(p,k){if(k)s.frequency.linearRampToValueAtTime(m*p[1],tt+L*p[0])});vd.connect(s.frequency);jd.connect(s.frequency);s.connect(pre)});
+  vib.frequency.value=5.6;vd.gain.setValueAtTime(0,tt);vd.gain.linearRampToValueAtTime(14*mult,tt+L*.55);vib.connect(vd);
+  jit.frequency.value=1.9+idx*.3;jd.gain.value=5*mult;jit.connect(jd);
+  pre.gain.value=.5;
+  lp.type='lowpass';lp.frequency.value=4200;lp.Q.value=.7;
+  p1.type='peaking';p1.frequency.value=620;p1.Q.value=3;p1.gain.value=9;
+  p2.type='peaking';p2.frequency.value=1180;p2.Q.value=3;p2.gain.value=7;
+  p3.type='peaking';p3.frequency.value=2700;p3.Q.value=2;p3.gain.value=4;
+  pre.connect(lp);lp.connect(p1);p1.connect(p2);p2.connect(p3);p3.connect(g);
+  g.gain.setValueAtTime(.0001,tt);g.gain.linearRampToValueAtTime(vg*vol,tt+.9);g.gain.linearRampToValueAtTime(vg*vol*.92,tt+L*.72);g.gain.exponentialRampToValueAtTime(.0001,tt+L);
+  am.frequency.value=6.3;ad.gain.value=vg*vol*.1;am.connect(ad);ad.connect(g.gain);
+  if(ac.createStereoPanner){var pn=ac.createStereoPanner();pn.pan.value=pan;g.connect(pn);pn.connect(bus)}else g.connect(bus);
+  [s1,s2,vib,jit,am].forEach(function(x){x.start(tt);x.stop(tt+L+.3)});
+  nz(L*.9,'bandpass',2600,.8,vg*vol*.45,{pink:1,a:.9,t:base+off,wet:.4,pan:pan});
+ });
 }
 /* 钢琴：加法合成 + 琴槌轻响，长衰减 + 空间感 */
 function pianoNote(f,t,v){
@@ -434,8 +454,8 @@ var SFX={
  whistle:function(){whistleSnd(.6,.085)},
  ding:function(){whistleSnd(.6,.085)},
  whistleS:function(){whistleSnd(.22,.045)},
- howl:function(){howlSnd({vol:.075,answer:1})},
- howlSoft:function(){howlSnd({vol:.035,len:.8})},
+ howl:function(){if(!playSample('wolf',.9,1,-.2))howlSnd({vol:.095})},
+ howlSoft:function(){if(!playSample('wolf',.5,.97,-.2))howlSnd({vol:.075,len:.85,solo:1})},
  clap:function(){[0,.013,.027].forEach(function(t,i){nz(.016,'bandpass',1500+i*140,1.1,.25,{t:t,a:.0008,wet:.2})});nz(.14,'bandpass',900,.7,.12,{t:.03,wet:.3})},
  ball:function(){osc('sine',160,70,.1,.16);nz(.03,'lowpass',620,.8,.12);osc('sine',140,65,.08,.08,{t:.17});nz(.02,'lowpass',560,.8,.06,{t:.17})},
  wind:function(){nz(1.5,'bandpass',260,.8,.3,{pink:1,f2:1300,a:.55,wet:.3,pan:-.5});nz(1.5,'lowpass',180,.7,.18,{pink:1,a:.4});nz(1.35,'bandpass',900,24,.08,{pink:1,f2:1250,a:.5,t:.1,pan:.4,wet:.4})},
@@ -449,19 +469,42 @@ var SFX={
  piano:function(){var ch=PROG[Math.min(pIdx,PROG.length-1)];pIdx++;ch.forEach(function(f,i){pianoNote(f,i*.22,.09-i*.008)})},
  watchOn:function(){watchStart()},
  watchOff:function(){watchStop()},
- title:function(){osc('sine',70,32,2.6,.22,{wet:.35,a:.02});nz(2,'lowpass',200,.7,.16,{pink:1,a:.9,wet:.4});whoosh(1.7,.08,{f:200,f2:900});pianoNote(220,.2,.08);pianoNote(329.63,.55,.07);howlSnd({vol:.04,len:.85,t:1.5,f:290})}
+ title:function(){osc('sine',70,32,2.6,.22,{wet:.35,a:.02});nz(2,'lowpass',200,.7,.16,{pink:1,a:.9,wet:.4});whoosh(1.7,.08,{f:200,f2:900});pianoNote(220,.2,.08);pianoNote(329.63,.55,.07);howlSnd({vol:.06,len:.9,t:1.4,f:300,solo:1})}
 };
-function play(n){if(!soundOn||!AC())return;if(videoOn&&n!=='click')return;try{if(SFX[n])SFX[n]()}catch(e){}}
+/* 电影字幕式的声音提示：[远处，传来狼嚎]（同时服务听障与低音量场景） */
+var cueT=null,cueLast={},CUES={howl:'远处，传来狼嚎',howlSoft:'远处，传来狼嚎',shutter:'相机快门声',whistle:'口哨声'};
+function cue(txt){
+ var n=Date.now();if(cueLast[txt]&&n-cueLast[txt]<3500)return;cueLast[txt]=n;
+ var el=document.getElementById('cue');if(!el){el=document.createElement('div');el.id='cue';el.setAttribute('role','status');document.body.appendChild(el)}
+ el.textContent='['+txt+']';el.classList.add('on');clearTimeout(cueT);cueT=setTimeout(function(){el.classList.remove('on')},2800);
+}
+var mediaOn={};
+function setMedia(id,on){mediaOn[id]=on;var any=false,k;for(k in mediaOn)if(mediaOn[k])any=true;duck(any)}
+function play(n){if(!soundOn||!AC())return;if(videoOn&&n!=='click')return;if(CUES[n])cue(CUES[n]);try{if(SFX[n])SFX[n]()}catch(e){}}
+/* ---------- 真实录音通道：把真实狼嚎放到 assets/audio/wolf-howl.mp3（或 .ogg / .wav），将自动优先使用 ---------- */
+var SMP={};
+function loadSample(k,urls){
+ if(SMP[k]!==undefined||!ac||!/^https?:$/.test(location.protocol)||typeof fetch!=='function')return;SMP[k]=null;
+ (function next(i){if(i>=urls.length)return;
+  fetch(urls[i]).then(function(r){if(!r.ok)throw 0;return r.arrayBuffer()})
+   .then(function(b){return new Promise(function(res,rej){ac.decodeAudioData(b,res,rej)})})
+   .then(function(buf){SMP[k]=buf}).catch(function(){next(i+1)});
+ })(0);
+}
+function playSample(k,vol,rate,pan){
+ var b=SMP[k];if(!b||!ac)return false;
+ var s=ac.createBufferSource(),g=ac.createGain();s.buffer=b;s.playbackRate.value=rate||1;g.gain.value=vol;s.connect(g);out(g,.35,pan);s.start();return true;
+}
 /* ---------- 声音开关：默认静音；经访客主动开启（进场选择或右上角按钮）；同一次浏览内记住选择 ---------- */
 var snd=$('#snd');
 function uiSnd(){if(snd){snd.setAttribute('aria-pressed',soundOn?'true':'false');snd.title=soundOn?'关闭声音':'开启声音（风声与音效）'}}
 function setSound(v,quiet){
  soundOn=!!v;try{sessionStorage.setItem(SWS,soundOn?'1':'0')}catch(e){}
- if(soundOn){if(AC()){startWind();if(!quiet)play('click')}}else{stopWind();watchStop()}
+ if(soundOn){if(AC()){startWind();loadSample('wolf',['assets/audio/wolf-howl.mp3','assets/audio/wolf-howl.ogg','assets/audio/wolf-howl.wav']);if(!quiet)play('click')}}else{stopWind();watchStop()}
  uiSnd();
 }
 if(snd)snd.onclick=function(){setSound(!soundOn)};
-try{if(sessionStorage.getItem(SWS)==='1'){soundOn=true;uiSnd();var armSnd=function(){document.removeEventListener('pointerdown',armSnd,true);document.removeEventListener('keydown',armSnd,true);if(soundOn&&AC())startWind()};document.addEventListener('pointerdown',armSnd,true);document.addEventListener('keydown',armSnd,true)}}catch(e){}
+try{if(sessionStorage.getItem(SWS)==='1'){soundOn=true;uiSnd();var armSnd=function(){document.removeEventListener('pointerdown',armSnd,true);document.removeEventListener('keydown',armSnd,true);if(soundOn&&AC()){startWind();loadSample('wolf',['assets/audio/wolf-howl.mp3','assets/audio/wolf-howl.ogg','assets/audio/wolf-howl.wav'])}};document.addEventListener('pointerdown',armSnd,true);document.addEventListener('keydown',armSnd,true)}}catch(e){}
 window.SWSound={play:play,set:setSound,state:function(){return soundOn}};Object.defineProperty(window.SWSound,'names',{get:function(){return Object.keys(SFX)}});
 
 /* 本页专属音效：撕封条 / 盖章 / 底片显影 */
@@ -472,17 +515,16 @@ var devCool={};
 let tt;const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2800)};
 /* ---------- 开场（与首页共用“已看过”标记） / 光标 / 揭示 ---------- */
 const intro=$('#intro');
+window.__swReady=true;
 if(intro){
- const kill=()=>{try{sessionStorage.setItem('swi','1')}catch(e){}if(document.body.contains(intro))intro.remove()};
+ const kill=()=>{try{sessionStorage.setItem('swi','1')}catch(e){}if(document.body.contains(intro))intro.remove();const r=document.documentElement;r.classList.remove('intro-open');r.classList.add('nointro')};
  const enter=withSound=>{if(withSound){setSound(true,true);play('title')}intro.style.transition='opacity .9s';intro.style.pointerEvents='none';intro.style.opacity='0';setTimeout(kill,withSound?1100:800)};
- intro.addEventListener('click',()=>enter(false));
  const bs=$('#isnd'),bq=$('#imute');
  if(bs)bs.addEventListener('click',e=>{e.stopPropagation();enter(true)});
  if(bq)bq.addEventListener('click',e=>{e.stopPropagation();enter(false)});
- intro.addEventListener('animationend',e=>{if(e.animationName=='introOut')kill()});
- setTimeout(()=>{if(document.body.contains(intro))kill()},7500);
+ setTimeout(()=>{if(bs&&document.body.contains(intro))bs.focus({preventScroll:true})},1800);
 }
-addEventListener('keydown',e=>{if(e.key=='Escape'){const i=$('#intro');if(i)i.click()}});
+addEventListener('keydown',e=>{if(e.key=='Escape'){const q=$('#imute');if($('#intro')&&q)q.click()}});
 const cu=$('#cu');if(cu&&matchMedia('(hover:hover) and (pointer:fine)').matches){let cx=0,cy=0,tx=0,ty=0;addEventListener('pointermove',e=>{tx=e.clientX;ty=e.clientY;cu.classList.add('on')},{passive:true});(function f(){cx+=(tx-cx)*.2;cy+=(ty-cy)*.2;cu.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(f)})();addEventListener('pointerover',e=>{const t=e.target.closest&&e.target.closest('[data-cur]');cu.dataset.l=t?t.dataset.cur:'';cu.classList.toggle('h',!!(t||(e.target.closest&&e.target.closest('a,button'))))})}
 const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target)}}),{threshold:.12});$$('.rv').forEach(x=>rio.observe(x));
 addEventListener('pointermove',e=>{body.style.setProperty('--gx',e.clientX+'px');body.style.setProperty('--gy',e.clientY+'px')},{passive:true});
